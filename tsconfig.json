@@ -17,10 +17,38 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir": "lib",
+    "declaration": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "baseUrl": "src",
+   // "typeRoots": ["./src/types", "./vendor/types"],
+   // "declarationDir": "./lib/types",
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@styles/*": ["styles/*"],
+      "@functions/*": ["functions/*"],
+      "@constants/*": ["constants/*"],
+      "@hooks/*": ["hooks/*"],
+      "@enums/*": ["enums/*"],
+      "@menus/*": ["menus/*"],
+      "@mocks/*": ["mocks/*"],
+      "@components/*": ["components/*"],
+      "@contexts/*": ["contexts/*"],
+      "@services/*": ["services/*"],
+      "@type/*": ["types/*"]
+    }
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "./src/stories",
+    "**/*.test.ts",
+    "**/*.snap",
+    "**/*.test.tsx",
+    "./src/setupTests.ts",
+    "./src/reportWebVitals.ts",
   ]
 }
