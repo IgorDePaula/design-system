@@ -20,6 +20,7 @@
   "files": [
     "lib"
   ],
+  "types": "lib/index.d.ts",
   "scripts": {
     "start": "react-scripts start",
     "build": "tsc && tailwindcss -i ./src/styles.css -o ./lib/dist.css",
