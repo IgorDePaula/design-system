@@ -3,7 +3,7 @@ import React from "react";
 import Table from "@components/table";
 
 import {conquerors, headers, headersConquerors, headersProduct, peoples, products} from "@mocks/table";
-import formatPrice from "../../../src/functions/formatPrice/formatPrice";
+import formatPrice from "@functions/formatPrice/formatPrice";
 import {act} from "react-dom/test-utils";
 import {PencilIcon} from "@heroicons/react/24/outline";
 import MenuOption from "@components/option";
