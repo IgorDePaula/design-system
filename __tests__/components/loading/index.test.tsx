@@ -1,16 +1,16 @@
 import {render} from '@testing-library/react'
 import Loading from "@components/loading"
-import ThemeEnum from "@enums/LoadingThemeEnum";
+import React from 'react'
 
 describe('Loading', () => {
 
     it('renders snapshot', () => {
-        const {container} = render(<Loading theme={ThemeEnum.light} />)
+        const {container} = render(<Loading theme={'light'} />)
         expect(container).toMatchSnapshot()
     })
 
     it('renders a loading', async () => {
-        const {findByTestId} = render(<Loading theme={ThemeEnum.light}/>)
+        const {findByTestId} = render(<Loading theme={'light'}/>)
 
         const loading = await findByTestId('loading')
 
@@ -19,7 +19,7 @@ describe('Loading', () => {
     })
 
     it('renders a loading a light mode',  async() => {
-        const {findByTestId, container} = render(<Loading theme={ThemeEnum.light}/>)
+        const {findByTestId, container} = render(<Loading theme={'light'}/>)
 
         const loading = await findByTestId('loading')
         expect(loading).toBeInTheDocument()
@@ -28,7 +28,7 @@ describe('Loading', () => {
     })
 
     it('renders a loading a dark mode',  async() => {
-        const {findByTestId, container} = render(<Loading theme={ThemeEnum.dark}/>)
+        const {findByTestId, container} = render(<Loading theme={'dark'}/>)
 
         const loading = await findByTestId('loading')
         expect(loading).toBeInTheDocument()

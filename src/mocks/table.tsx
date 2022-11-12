@@ -1,4 +1,5 @@
 import Badget from "@components/badget";
+import React from "react";
 
 const person=
     {
@@ -33,7 +34,7 @@ export const peoples = [{
     id:1,
     name: <Name/>,
     title: <Title/>,
-    status: <Badget text='Ativo' />,
+    status: <Badget text='Ativo' variant='success'/>,
     role: person.role
 }]
 

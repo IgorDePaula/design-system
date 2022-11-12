@@ -1,8 +1,7 @@
-/// <reference types="react" />
-import LoadingThemeEnum from "../../enums/LoadingThemeEnum";
-interface ThemeInterface {
-    theme: LoadingThemeEnum;
-}
-export default function Loading(props: ThemeInterface): JSX.Element;
-export {};
+import React from "react";
+export declare type ThemeType = {
+    theme: 'light' | 'dark';
+};
+declare const Loading: React.FunctionComponent<ThemeType>;
+export default Loading;
 //# sourceMappingURL=loading.d.ts.map

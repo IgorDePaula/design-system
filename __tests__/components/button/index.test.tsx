@@ -3,6 +3,7 @@ import Button from "@components/button";
 import {LockClosedIcon} from "@heroicons/react/20/solid";
 
 import {ButtonComponent} from "../../../src/stories/ui/button/Button.stories";
+import React from 'react';
 
 it('renders snapshot', () => {
     const {container} = render(<Button text='acessar' onclick={() => {

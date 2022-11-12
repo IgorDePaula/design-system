@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import React from 'react';
 import {BadgetComponent} from "../../../src/stories/ui/badget/Badget.stories";
 
 it('renders snapshot', () => {

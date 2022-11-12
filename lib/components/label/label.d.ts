@@ -1,4 +1,8 @@
-/// <reference types="react" />
-import LabelType from "@type/LabelType";
-export default function Label(props: LabelType): JSX.Element;
+import React, { ReactNode } from "react";
+export declare type LabelType = {
+    id: string;
+    children: ReactNode;
+};
+declare const Label: React.FunctionComponent<LabelType>;
+export default Label;
 //# sourceMappingURL=label.d.ts.map

@@ -1,4 +1,8 @@
-/// <reference types="react" />
-import BadgetType from "@type/BadgetType";
-export default function Badget(props: BadgetType): JSX.Element;
+import React from 'react';
+export interface BadgetType {
+    text: string;
+    variant?: 'success' | 'error' | 'warning' | 'info';
+}
+declare const Badget: React.FunctionComponent<BadgetType>;
+export default Badget;
 //# sourceMappingURL=badget.d.ts.map
