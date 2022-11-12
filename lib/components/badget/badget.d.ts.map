@@ -1,1 +1,1 @@
-{"version":3,"file":"badget.d.ts","sourceRoot":"","sources":["../../../src/components/badget/badget.tsx"],"names":[],"mappings":";AAAA,OAAO,UAAU,MAAM,kBAAkB,CAAC;AAE1C,MAAM,CAAC,OAAO,UAAU,MAAM,CAAC,KAAK,EAAE,UAAU,eAa/C"}
+{"version":3,"file":"badget.d.ts","sourceRoot":"","sources":["../../../src/components/badget/badget.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,MAAM,WAAW,UAAU;IACvB,IAAI,EAAE,MAAM,CAAA;IACZ,OAAO,CAAC,EAAE,SAAS,GAAG,OAAO,GAAG,SAAS,GAAG,MAAM,CAAA;CACrD;AAED,QAAA,MAAM,MAAM,EAAE,KAAK,CAAC,iBAAiB,CAAC,UAAU,CAa/C,CAAA;AAED,eAAe,MAAM,CAAC"}

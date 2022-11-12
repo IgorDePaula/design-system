@@ -8,4 +8,5 @@ export { default as MenuOption } from './menus';
 export { default as Option } from './option';
 export { default as Table } from './table';
 export { default as TextInput } from './textinput';
+export { default as Forms } from './form';
 //# sourceMappingURL=index.d.ts.map

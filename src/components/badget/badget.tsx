@@ -1,6 +1,11 @@
-import BadgetType from "@type/BadgetType";
+import React from 'react';
 
-export default function Badget(props: BadgetType) {
+export interface BadgetType   {
+    text: string
+    variant?: 'success' | 'error' | 'warning' | 'info'
+}
+
+const Badget: React.FunctionComponent<BadgetType> = (props: BadgetType) => {
     const {text, variant} = props
     const variants = {
         error: 'text-red-800 bg-red-100',
@@ -14,3 +19,5 @@ export default function Badget(props: BadgetType) {
 {text}
                         </span>
 }
+
+export default Badget;

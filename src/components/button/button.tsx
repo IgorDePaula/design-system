@@ -1,5 +1,11 @@
-import ButtonType from "@type/ButtonType";
+import React,{ReactNode} from "react";
 
+export type ButtonType = {
+    icon?: ReactNode,
+    text:string,
+    onclick: () => void
+    href?:string
+}
 export default function Button(props: ButtonType){
     const {icon, text, onclick, href} = props
     return <button onClick={onclick} data-testid='button'

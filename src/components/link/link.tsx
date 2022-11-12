@@ -1,4 +1,9 @@
-import LinkType from "@type/LinkType";
+import React, {ReactNode} from "react";
+export type LinkType = {
+    icon?: ReactNode,
+    text:string,
+    href: string
+}
 
 export default function Link(props: LinkType){
     const {icon, text, href} = props

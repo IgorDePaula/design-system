@@ -1,10 +1,23 @@
-import { useState} from "react";
-import TableType from "@type/TableType";
+import {ReactNode, useState} from "react";
+import React from "react";
+export type DataTableType = {
+    // @ts-ignore
+    id: number,
+    [Key in keyof (string)]: string|number
+}
+
+export type TableType = {
+    headers: object[]
+    hiddenHeaders?: string[],
+    formatFn?: { [Key: string]: (param: any) => string },
+    data: DataTableType[],
+    options?: (params: number) => ReactNode | undefined
+}
 
 const Table = (props: TableType) => {
     const {headers , hiddenHeaders = [], formatFn , data = [], options} = props
-    const [titleHeads, setTitleHeads] = useState(headers.map(item => Object.values(item)))
-    const [keyHeads, setKeyHeads] = useState(headers.map(item => Object.keys(item)))
+    const [titleHeads] = useState(headers.map(item => Object.values(item)))
+    const [keyHeads] = useState(headers.map(item => Object.keys(item)))
 
     const format = (key: string, value: string) => {
         return formatFn?.hasOwnProperty(key) ? formatFn[key](value) : value

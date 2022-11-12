@@ -1,8 +1,17 @@
 import { Menu, Transition } from '@headlessui/react'
-import React, { Fragment } from 'react'
+import React, {Fragment, ReactNode} from 'react'
 import { ChevronDoubleDownIcon } from "@heroicons/react/20/solid";
-import MenuType from "@type/MenuType";
 
+export type MenuItemType = {
+    handler: (params?:any) => void,
+    icon?: string | ReactNode,
+    label: string
+}
+
+export type MenuType = {
+    children: ReactNode,
+    options: MenuItemType[]
+}
 export default function MenuOption(props: MenuType) {
 const {children, options=[]} = props
     return (

@@ -1,5 +1,8 @@
 import React from 'react'
-import AvatarType from "@type/AvatarType";
+
+export type AvatarType = {
+    url:string
+}
 
 export default function Avatar(props:AvatarType) {
     return (<object className={' h-8 w-8 overflow-hidden rounded-full '} data-testid="avatar" data={props.url} type="image/jpeg">

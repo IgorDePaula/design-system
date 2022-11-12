@@ -1,5 +1,6 @@
 import {render, screen} from '@testing-library/react'
 import Label from "@components/label";
+import React from 'react';
 
 
 it('renders snapshot', () => {

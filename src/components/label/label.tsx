@@ -1,6 +1,11 @@
-import LabelType from "@type/LabelType";
+import React,{ReactNode} from "react";
 
-export default function Label(props: LabelType) {
+export type LabelType = {
+    id: string
+    children: ReactNode
+}
+
+const Label: React.FunctionComponent<LabelType> = (props: LabelType) => {
     const { id, children } = props
     return (
         <label
@@ -12,3 +17,4 @@ export default function Label(props: LabelType) {
         </label>
     )
 }
+export default Label

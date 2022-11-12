@@ -1,14 +1,14 @@
-import LoadingThemeEnum from "../../enums/LoadingThemeEnum";
+import React from "react";
 
-interface ThemeInterface {
-    theme: LoadingThemeEnum
+export type ThemeType = {
+    theme: 'light' | 'dark'
 }
 
-export default function Loading(props: ThemeInterface) {
+const Loading: React.FunctionComponent<ThemeType> = (props: ThemeType) => {
     const {theme} = props
     return <div data-testid="loading" className='w-full flex justify-center items-center'>
         <svg
-            className={`animate-spin -ml-1 mr-3 h-5 w-5 ${theme == LoadingThemeEnum.light && 'text-blue-500'}  ${theme == LoadingThemeEnum.dark && 'text-white'}`}
+            className={`animate-spin -ml-1 mr-3 h-5 w-5 ${theme == 'light' && 'text-blue-500'}  ${theme == 'dark' && 'text-white'}`}
             xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10"
@@ -18,3 +18,4 @@ export default function Loading(props: ThemeInterface) {
         </svg>
     </div>
 }
+export default Loading

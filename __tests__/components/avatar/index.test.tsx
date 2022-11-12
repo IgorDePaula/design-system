@@ -19,6 +19,7 @@ describe('Avatar', () => {
 */
 
 import { render } from '@testing-library/react';
+import React from 'react';
 
 import { AvatarComponent } from '../../../src/stories/ui/avatar/Avatar.stories';
 
