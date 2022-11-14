@@ -12,7 +12,7 @@ export type MenuType = {
     children: ReactNode,
     options: MenuItemType[]
 }
-export default function MenuOption(props: MenuType) {
+const MenuOption: React.FunctionComponent<MenuType> = (props: MenuType) => {
 const {children, options=[]} = props
     return (
         <div className="top-16 mr-4 ml-4 text-right ">
@@ -40,12 +40,12 @@ const {children, options=[]} = props
                         {options.map(item=>{
                             return <Menu.Item key={item.label}>
 
-                                <button onClick={()=>item.handler(children)} data-testid={`${item.label}-${children}`}
+                                <a onClick={()=>item.handler(children)} data-testid={`${item.label}-${children}`}
                                         className={`group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                 >
                                     {item.icon}
                                     {item.label}
-                                </button>
+                                </a>
                             </Menu.Item>})}
 
                     </Menu.Items>
@@ -54,3 +54,4 @@ const {children, options=[]} = props
         </div>
     )
 }
+export default MenuOption

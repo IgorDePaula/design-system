@@ -6,7 +6,7 @@ export type ButtonType = {
     onclick: () => void
     href?:string
 }
-export default function Button(props: ButtonType){
+const Button: React.FunctionComponent<ButtonType> = (props: ButtonType) => {
     const {icon, text, onclick, href} = props
     return <button onClick={onclick} data-testid='button'
                    type="submit"
@@ -18,3 +18,4 @@ export default function Button(props: ButtonType){
         {text}
     </button>
 }
+export default Button

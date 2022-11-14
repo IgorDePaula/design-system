@@ -37,26 +37,33 @@ export default {
 
 const Template: ComponentStory<typeof TableCom> = (args) => <TableCom {...args} />;
 
-export const TableComponent = Template.bind({});
+export const Default = Template.bind({});
 
-TableComponent.args = {
+Default.args = {
     headers:headers,
     data:peoples
 }
-export const TableComponentWithFormatFn = Template.bind({});
+export const ComponentWithFormatFuntion = Template.bind({});
 
-TableComponentWithFormatFn.args = {
+ComponentWithFormatFuntion.args = {
     headers:headersProduct,
     data:products,
     formatFn:{'price':formatPrice}
 }
-export const TableComponentWithOptions = Template.bind({});
+export const ComponentWithOptionsMenu = Template.bind({});
 
-TableComponentWithOptions.args = {
+ComponentWithOptionsMenu.args = {
     headers:headersConquerors,
     data:conquerors,
-    hiddenHeaders:['id'],
     options: TableMenu
+}
+
+export const ComponentWithHiddenHeaders = Template.bind({});
+
+ComponentWithHiddenHeaders.args = {
+    headers:headersConquerors,
+    data:conquerors,
+    hiddenHeaders: ['id']
 }
 
 

@@ -30,6 +30,6 @@ export default {
 
 const Template: ComponentStory<typeof Badget> = (args) => <Badget {...args} />;
 
-export const BadgetComponent = Template.bind({});
+export const Default = Template.bind({});
 
 

@@ -1,8 +1,9 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 export declare type LinkType = {
     icon?: ReactNode;
     text: string;
     href: string;
 };
-export default function Link(props: LinkType): JSX.Element;
+declare const Link: React.FunctionComponent<LinkType>;
+export default Link;
 //# sourceMappingURL=link.d.ts.map

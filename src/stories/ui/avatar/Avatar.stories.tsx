@@ -15,5 +15,11 @@ export default {
 } as ComponentMeta<typeof Avatar>;
 
 const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
-export const AvatarComponent = Template.bind({url:''});
+export const Default = Template.bind({url:''});
+
+export const WithImage = Template.bind( {});
+
+WithImage.args = {
+    url: 'https://randomuser.me/api/portraits/women/34.jpg'
+}
 

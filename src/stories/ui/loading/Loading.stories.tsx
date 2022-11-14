@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Loading from "@components/loading";
-import LoadingThemeEnum from "@enums/LoadingThemeEnum";
 export default {
   title: 'UI/Loading',
   component: Loading,
@@ -36,8 +35,8 @@ export default {
 
 const Template: ComponentStory<typeof Loading> = (args) => <Loading {...args} />;
 
-export const LoadingComponent = Template.bind({});
+export const Default = Template.bind({});
 
-LoadingComponent.args = {
-  theme: LoadingThemeEnum.light
+Default.args = {
+  theme: 'light'
 }

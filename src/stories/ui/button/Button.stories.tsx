@@ -38,16 +38,16 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const ButtonComponent = Template.bind({});
-export const ButtonWithIconComponent = Template.bind({});
+export const Default = Template.bind({});
+export const WithIconComponent = Template.bind({});
 
-ButtonWithIconComponent.args = {
+WithIconComponent.args = {
     icon: <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true"/>,
     text:'Acessar',
     onclick: ()=>window.alert('Clicked!')
 }
 
-ButtonComponent.args = {
+Default.args = {
     text:'Acessar',
     onclick: ()=>window.alert('Clicked!')
 }

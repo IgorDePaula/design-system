@@ -31,9 +31,9 @@ export default {
 
 const Template: ComponentStory<typeof MenuOption> = ({options,children}) =>  <MenuOption options={options}>{children}</MenuOption>
 
-export const OptionComponent = Template.bind({});
+export const Default = Template.bind({});
 
-OptionComponent.args = {
+Default.args = {
     options: options,
 }
 
