@@ -52,6 +52,11 @@ Default.args = {
     onclick: ()=>window.alert('Clicked!')
 }
 
+export const WithLoading= Template.bind({});
 
-
-
+WithLoading.args = {
+    icon: <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true"/>,
+    isLoading: true,
+    text:'Acessar',
+    onclick: ()=>window.alert('Clicked!')
+}
