@@ -1,6 +1,7 @@
-/// <reference types="react" />
+import React from 'react';
 export declare type AvatarType = {
     url: string;
 };
-export default function Avatar(props: AvatarType): JSX.Element;
+declare const Avatar: React.FunctionComponent<AvatarType>;
+export default Avatar;
 //# sourceMappingURL=avatar.d.ts.map

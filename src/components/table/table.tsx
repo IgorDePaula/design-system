@@ -1,5 +1,5 @@
-import {ReactNode, useState} from "react";
-import React from "react";
+import React,{ReactNode, useState} from "react";
+
 export type DataTableType = {
     // @ts-ignore
     id: number,
@@ -14,7 +14,7 @@ export type TableType = {
     options?: (params: number) => ReactNode | undefined
 }
 
-const Table = (props: TableType) => {
+const Table: React.FunctionComponent<TableType> = (props: TableType) => {
     const {headers , hiddenHeaders = [], formatFn , data = [], options} = props
     const [titleHeads] = useState(headers.map(item => Object.values(item)))
     const [keyHeads] = useState(headers.map(item => Object.keys(item)))

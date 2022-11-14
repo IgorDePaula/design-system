@@ -4,7 +4,7 @@ export type AvatarType = {
     url:string
 }
 
-export default function Avatar(props:AvatarType) {
+const Avatar: React.FunctionComponent<AvatarType> =(props:AvatarType) => {
     return (<object className={' h-8 w-8 overflow-hidden rounded-full '} data-testid="avatar" data={props.url} type="image/jpeg">
         <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -12,3 +12,5 @@ export default function Avatar(props:AvatarType) {
         </svg>
     </object>)
 }
+
+export default Avatar

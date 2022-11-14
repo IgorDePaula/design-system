@@ -1,4 +1,4 @@
-import {Avatar, Badget, Button, Table, Label, Link, Loading, Option, TextInput, Forms} from './components'
+import {Avatar, Badget, Button, Table, Label, Link, Loading, Option} from './components'
 import {formatPrice, classNames} from './functions'
 import type {AvatarType} from '@components/avatar'
 import type {BadgetType} from "@components/badget";
@@ -29,9 +29,7 @@ export {
     Link,
     Loading,
     Option,
-    TextInput,
-    Forms,
     formatPrice,
-    classNames,
+    classNames
 }
 
