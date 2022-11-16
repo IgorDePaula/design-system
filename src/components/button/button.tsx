@@ -1,23 +1,30 @@
-import React,{ReactNode} from "react";
+import React, {ReactNode} from "react";
+import Loading from "@components/loading";
 
 import Loading from "../loading";
 
 
 export type ButtonType = {
     icon?: ReactNode,
-    text:string,
+    text: string,
     onclick: () => void
-    href?:string
+    href?: string,
+    isLoading?: boolean
 }
 const Button: React.FunctionComponent<ButtonType> = (props: ButtonType) => {
-    const {icon, text, onclick, href} = props
-    return <button onClick={onclick} data-testid='button'
+    const {icon, text, onclick, href, isLoading = false} = props
+    return <button onClick={() => {
+        if (!isLoading) {
+            onclick()
+        }
+    }} data-testid='button'
                    type="submit"
-                   className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                   className={`group relative flex w-full justify-center rounded-md border border-transparent ${isLoading ? 'cursor-not-allowed' : ''} bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
     >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+        {icon && !isLoading && <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                   {icon}
-                </span>
+                </span>}
+        {isLoading && <Loading theme={'dark'}/>}
         {text}
     </button>
 }

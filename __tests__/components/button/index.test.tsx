@@ -30,5 +30,13 @@ describe("Button", () => {
 
         expect(icon).toBeInTheDocument()
     })
+    it('renders a button with loading', async () => {
+        const {findByTestId} = render(<Button isLoading={true} text='acessar' icon={<LockClosedIcon
+            className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true"/>} onclick={() => {
+        }}/>)
+        const loading = await findByTestId('loading')
+
+        expect(loading).toBeInTheDocument()
+    })
 })
 
