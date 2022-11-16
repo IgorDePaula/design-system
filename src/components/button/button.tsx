@@ -1,5 +1,8 @@
 import React,{ReactNode} from "react";
 
+import Loading from "../loading";
+
+
 export type ButtonType = {
     icon?: ReactNode,
     text:string,
