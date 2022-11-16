@@ -8,7 +8,6 @@ import type {LabelType} from "@components/label";
 import type {ThemeType} from "@components/loading"
 import type {InputType} from "@components/input"
 import type {SwitcherType} from "@components/switcher";
-
 import type {MenuType, MenuItemType} from "@components/option"
 import type {TableType, DataTableType} from "@components/table"
 
@@ -22,8 +21,7 @@ export type {
     ThemeType,
     TableType,
     DataTableType,
-    InputType,
-    SwitcherType
+    SwitcherType,
     InputType
 }
 
