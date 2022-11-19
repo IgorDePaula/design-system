@@ -21,7 +21,7 @@ export default {
     },
     parameters: {
 
-
+layout:'centered',
         docs: {
             description: {
                 component: 'Switcher é um componente boolean para formulários',
