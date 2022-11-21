@@ -1,4 +1,4 @@
-import {render, screen} from '@testing-library/react'
+import {render} from '@testing-library/react'
 import Autocomplete from "@components/autocomplete";
 import React from 'react';
 import people from "../../../src/mocks/autocomplete";

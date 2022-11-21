@@ -3,23 +3,23 @@ import Label from "../label";
 import {Combobox as Combo} from '@headlessui/react'
 
 
-export type ComboboxType = {
+export type AutocompleteType = {
     label?: string
     selectedValue?: string
-    options:ComboboxOptionType[]
+    options:AutocompleteOptionType[]
     disabled?: boolean
     getState?:(param:string|number|undefined)=>void
     rules?: ((params: string | null | undefined) => (boolean | string))[]
     hasError?: (params: boolean) => void
 }
 
-export type ComboboxOptionType = {
+export type AutocompleteOptionType = {
     label: string
     value: string
     disabled?: boolean
 }
 
-const Autocomplete = (props: ComboboxType) => {
+const Autocomplete = (props: AutocompleteType) => {
     const {label, selectedValue, options, rules = [], getState, disabled} = props
     const [selected, setSelected] = useState<string | number | undefined>(selectedValue)
     const [query, setQuery] = useState('')
@@ -30,7 +30,7 @@ const Autocomplete = (props: ComboboxType) => {
     const filteredOptions =
         query === ''
             ? options
-            : options.filter((option: ComboboxOptionType) => {
+            : options.filter((option: AutocompleteOptionType) => {
                 return option.value.includes(query.toLowerCase())
             })
 
