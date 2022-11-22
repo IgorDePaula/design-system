@@ -24,6 +24,9 @@ export default {
         options:{
             description:'Array de opcoes do autocomplete, no par label:value'
         },
+        name: {
+            description: 'Nome do campo'
+        },
         getState:{
             description:'Funcao para capturar o valor setado no autocomplete'
         },
@@ -80,13 +83,11 @@ WithDefaultValue.args = {options: people, selectedValue: 'Benedict Kessler'}
 export const WithError = Template.bind({});
 
 WithError.args = {
-    id: 'teste',
     name: 'Teste',
-    type: 'text',
-    rules: [(value: any) => !!value || 'Campo obrigatorio'],
+    hasError: true,
     options: people
 }
 
 export const Disabled = Template.bind({});
 
-Disabled.args = {id: 'teste', name: 'Teste', disabled: true, options: people}
+Disabled.args = {name: 'Teste', disabled: true, options: people}

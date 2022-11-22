@@ -2,11 +2,11 @@
 export declare type SelectType = {
     label?: string;
     selectedValue?: string;
+    name: string;
     options: SelectOptionType[];
     disabled?: boolean;
     getState?: (param: string | number | undefined) => void;
-    rules?: ((params: string | null | undefined) => (boolean | string))[];
-    hasError?: (params: boolean) => void;
+    hasError?: boolean;
 };
 export declare type SelectOptionType = {
     label: string;
