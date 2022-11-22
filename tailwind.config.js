@@ -5,7 +5,8 @@ module.exports = {
     colors: {
       "white": '#fff',
       "klub": {
-        primary: "#3bc236"
+        primary: "#3bc236",
+        hover: "#2f9b2b",
       },
       "connexio": {
         primary: {
@@ -14,6 +15,7 @@ module.exports = {
           dark: "#e73c1e",
           ambar: "#ff8f00",
         },
+        hover: "#cc6e00",
         secundary: "#2c8476",
       },
     },

@@ -12,8 +12,6 @@ export const AvatarIcon = ({
   width = "25",
   height = "25",
 }: IconProps) => {
-  console.log("avatar-icon");
-  console.log(variant);
   const [outsideFill, setOutsideFill] = useState("");
   const [insideFill, setInsideFill] = useState("#FFF");
 

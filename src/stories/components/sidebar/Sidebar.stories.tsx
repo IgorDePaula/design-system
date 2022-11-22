@@ -14,11 +14,6 @@ export default {
     options: {
       defaultValue: [...mockSidebar],
     },
-    collapsed: {
-      defaultValue: true,
-      options: [true, false],
-      control: { type: "radio" },
-    },
     variant: {
       defaultValue: "klub",
       options: ["klub", "connexio"],
