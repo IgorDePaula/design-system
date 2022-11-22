@@ -1,6 +1,6 @@
 {
   "name": "@blickdev/ds",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": false,
   "dependencies": {
     "@headlessui/react": "^1.7.4",
