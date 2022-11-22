@@ -5,12 +5,14 @@ import { HeaderProps } from "../header";
 const UserMenu = ({ variant }: HeaderProps) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
+  const handleOpenDropdown = () => setShowDropdown((prevState) => !prevState);
+
   return (
     <div className="contents">
       <div
         data-testid="user-menu-wrapper-icon"
         className="flex items-center place-content-center mr-4 w-10 h-10 rounded-full cursor-pointer"
-        onClick={() => setShowDropdown((prevState) => !prevState)}
+        onClick={handleOpenDropdown}
       >
         <AvatarIcon width="30" height="30" variant={variant} />
       </div>

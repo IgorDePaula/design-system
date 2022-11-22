@@ -201,16 +201,14 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   {options?.map((item) => (
                     <div
                       onClick={() => {
-                        expandOptions && selectedItem === item.id ? (
-                          setExpandOptions(prevState => !prevState)
-                        ) : (
-                          setExpandOptions(true)
-                        )
-                        openOptionsWhenMenuClosed && selectedItem === item.id ? (
-                          setOpenOptionsWhenMenuClosed(prevState => !prevState)
-                        ) : (
-                          setOpenOptionsWhenMenuClosed(true)
-                        )
+                        expandOptions && selectedItem === item.id
+                          ? setExpandOptions((prevState) => !prevState)
+                          : setExpandOptions(true);
+                        openOptionsWhenMenuClosed && selectedItem === item.id
+                          ? setOpenOptionsWhenMenuClosed(
+                              (prevState) => !prevState
+                            )
+                          : setOpenOptionsWhenMenuClosed(true);
                         setSelectedItem(item.id);
                       }}
                       className={
