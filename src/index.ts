@@ -1,4 +1,4 @@
-import {Avatar, Badget, Button, Table, Label, Link, Loading, Option, Input, Switcher, Autocomplete} from './components'
+import {Avatar, Badget, Button, Table, Label, Link, Loading, Option, Input, Switcher, Autocomplete, RadioButton} from './components'
 
 import {formatPrice, classNames} from './functions'
 import type {AvatarType} from '@components/avatar'
@@ -11,6 +11,7 @@ import type {SwitcherType} from "@components/switcher";
 import type {MenuType, MenuItemType} from "@components/option"
 import type {TableType, DataTableType} from "@components/table"
 import type {AutocompleteOptionType, AutocompleteType} from "@components/autocomplete"
+import type {RadioButtonType} from "@components/radiobutton";
 
 export type {
     AvatarType,
@@ -25,7 +26,8 @@ export type {
     SwitcherType,
     InputType,
     AutocompleteOptionType,
-    AutocompleteType
+    AutocompleteType,
+    RadioButtonType
 }
 
 export {
@@ -40,6 +42,7 @@ export {
     Input,
     Switcher,
     Autocomplete,
+    RadioButton,
     formatPrice,
     classNames
 }
