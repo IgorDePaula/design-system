@@ -36,11 +36,13 @@ const navigation = [
 
 const Sidebar = ({ variant, options }: SidebarProps) => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [openOptionsWhenMenuClosed, setOpenOptionsWhenMenuClosed] =
     useState<boolean>(false);
   const [expandOptions, setExpandOptions] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<number>();
+  const alignIcons = openMenu ? "justify-start" : "justify-center";
   return (
     <>
       <div className="flex h-screen overflow-y-auto">
@@ -72,67 +74,184 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white focus:outline-none">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-in-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in-out duration-300"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                  >
-                    <div className="absolute top-0 right-0 -mr-12 pt-4">
-                      <button
-                        type="button"
-                        className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon
-                          className="h-6 w-6 text-white"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </div>
-                  </Transition.Child>
-                  <div className="pt-5 pb-4">
-                    <div className="flex flex-shrink-0 items-center px-4">
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Your Company"
+                <Dialog.Panel
+                  className={
+                    variant === "klub"
+                      ? "relative flex w-full max-w-xs flex-1 flex-col bg-klub-primary focus:outline-none"
+                      : "relative flex w-full max-w-xs flex-1 flex-col bg-connexio-primary-light focus:outline-none"
+                  }
+                >
+                  <div className="self-end">
+                    <button
+                      type="button"
+                      className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        setIsMobile(false);
+                      }}
+                    >
+                      <MdClose
+                        fontSize="30"
+                        color="white"
+                        className="cursor-pointer mr-2 mt-2"
                       />
-                    </div>
-                    <nav aria-label="Sidebar" className="mt-5">
-                      <div className="space-y-1 px-2">
-                        {navigation.map((item) => (
-                          <>{item.icon}</>
-                        ))}
-                      </div>
-                    </nav>
+                    </button>
                   </div>
-                  <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
-                    <a href="#" className="group block flex-shrink-0">
-                      <div className="flex items-center">
-                        <div>
-                          <img
-                            className="inline-block h-10 w-10 rounded-full"
-                            src={user.imageUrl}
-                            alt=""
-                          />
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                            {user.name}
-                          </p>
-                          <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                            Account Settings
-                          </p>
+                  <nav
+                    aria-label="Sidebar"
+                    className={
+                      "flex flex-col items-start space-y-3 w-full mx-auto mt-5"
+                    }
+                  >
+                    {options?.map((item) => (
+                      <div
+                        onClick={() => {
+                          expandOptions && selectedItem === item.id
+                            ? setExpandOptions((prevState) => !prevState)
+                            : setExpandOptions(true);
+                          openOptionsWhenMenuClosed && selectedItem === item.id
+                            ? setOpenOptionsWhenMenuClosed(
+                                (prevState) => !prevState
+                              )
+                            : setOpenOptionsWhenMenuClosed(true);
+                          setSelectedItem(item.id);
+                        }}
+                        className={
+                          variant === "connexio"
+                            ? "flex items-center p-4 w-full hover:bg-connexio-hover cursor-pointer"
+                            : "flex items-center p-4 w-full hover:bg-klub-hover cursor-pointer"
+                        }
+                      >
+                        <div className="flex">
+                          {item.icon}
+                          <div className="flex-col">
+                            <div className="flex-col">
+                              <div className="flex">
+                                <span
+                                  className={
+                                    "flex text-white bold ml-4 text-xl"
+                                  }
+                                >
+                                  {item.label}
+                                </span>
+                                <BsArrowDownShort
+                                  fontSize={20}
+                                  color="white"
+                                  className={
+                                    expandOptions && selectedItem === item.id
+                                      ? "mt-1 rotate-0 ease-in-out duration-200"
+                                      : "mt-1 -rotate-90 ease-in-out duration-200"
+                                  }
+                                />
+                              </div>
+                              <div
+                                className={
+                                  openOptionsWhenMenuClosed &&
+                                  openMenu === false &&
+                                  selectedItem === item.id
+                                    ? "flex flex-col"
+                                    : "hidden"
+                                }
+                              >
+                                {item.subMenus?.length &&
+                                  item.subMenus?.map(
+                                    (
+                                      itemSubmenus: OptionsProps,
+                                      indexMenuitem: number
+                                    ) => (
+                                      <div
+                                        key={`menuitem-sidebar-${indexMenuitem}`}
+                                        className={
+                                          variant === "connexio"
+                                            ? "mt-2 ml-2 self-start w-full rounded-lg hover:bg-connexio-primary-light p-4 text-white cursor-pointer"
+                                            : "mt-2 ml-2 self-start w-full rounded-lg hover:bg-klub-primary p-4 text-white cursor-pointer"
+                                        }
+                                      >
+                                        <div className="flex gap-0.5">
+                                          <a
+                                            href={itemSubmenus.path}
+                                            target="blank"
+                                            onClick={() =>
+                                              setOpenOptionsWhenMenuClosed(
+                                                false
+                                              )
+                                            }
+                                          >
+                                            {itemSubmenus.icon}
+                                            <span className="text-sm">
+                                              {itemSubmenus.name}
+                                            </span>
+                                          </a>
+                                        </div>
+                                      </div>
+                                    )
+                                  )}
+                              </div>
+
+                              <div
+                                className={
+                                  openMenu && isMobile === false
+                                    ? "flex self-center mt-2"
+                                    : "hidden"
+                                }
+                              >
+                                <BsArrowDownShort
+                                  fontSize={15}
+                                  color="white"
+                                  className={
+                                    expandOptions && selectedItem === item.id
+                                      ? "rotate-0 ease-in-out duration-200"
+                                      : "-rotate-90 ease-in-out duration-200"
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div
+                              className={
+                                openMenu &&
+                                expandOptions &&
+                                selectedItem === item.id
+                                  ? "flex flex-col mt-2"
+                                  : "hidden"
+                              }
+                            >
+                              {item.subMenus?.length &&
+                                item.subMenus?.map(
+                                  (
+                                    itemSubmenus: OptionsProps,
+                                    indexMenuitem: number
+                                  ) => (
+                                    <div
+                                      key={`menuitem-sidebar-${indexMenuitem}`}
+                                      className={
+                                        variant === "connexio"
+                                          ? "hover:bg-connexio-primary-light hover:rounded p-2 text-white cursor-pointer"
+                                          : "hover:bg-klub-primary hover:rounded p-2 text-white cursor-pointer"
+                                      }
+                                    >
+                                      <div className="flex gap-0.5">
+                                        <a
+                                          href={itemSubmenus.path}
+                                          target="blank"
+                                          onClick={() =>
+                                            setExpandOptions(false)
+                                          }
+                                        >
+                                          {itemSubmenus.icon}
+                                          <span className="text-sm">
+                                            {itemSubmenus.name}
+                                          </span>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  )
+                                )}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </a>
-                  </div>
+                    ))}
+                  </nav>
                 </Dialog.Panel>
               </Transition.Child>
               <div className="w-14 flex-shrink-0" aria-hidden="true">
@@ -148,8 +267,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
           <div
             className={
               openMenu
-                ? "flex w-[250px] flex-col ease-in-out duration-300"
-                : "flex w-20 flex-col ease-in-out duration-300"
+                ? "flex w-[250px] flex-col ease-in-out duration-200"
+                : "flex w-20 flex-col ease-in-out duration-200"
             }
           >
             <div
@@ -167,7 +286,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                       : "flex items-center justify-center py-4"
                   }
                   onClick={() => {
-                    setMobileMenuOpen(true);
+                    //setMobileMenuOpen(true);
                     setExpandOptions(false);
                     setOpenOptionsWhenMenuClosed(false);
                   }}
@@ -194,7 +313,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   aria-label="Sidebar"
                   className={
                     openMenu
-                      ? "flex flex-col items-start space-y-3 ml-3"
+                      ? "flex flex-col items-start space-y-3"
                       : "flex flex-col items-center space-y-3"
                   }
                 >
@@ -213,8 +332,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                       }}
                       className={
                         variant === "connexio"
-                          ? "flex items-center rounded-lg p-4 hover:bg-connexio-hover cursor-pointer"
-                          : "flex items-center rounded-lg p-4 hover:bg-klub-hover cursor-pointer"
+                          ? `flex ${alignIcons} items-center w-full p-4 hover:bg-connexio-hover cursor-pointer`
+                          : `flex ${alignIcons} items-center w-full p-4 hover:bg-klub-hover cursor-pointer`
                       }
                     >
                       <div className="flex">
@@ -354,8 +473,15 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
               <div>
                 <button
                   type="button"
-                  className="-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                  onClick={() => setMobileMenuOpen(true)}
+                  className={
+                    variant === "klub"
+                      ? "-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-600 text-klub-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                      : "-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-600 text-connexio-primary-light hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                  }
+                  onClick={() => {
+                    setMobileMenuOpen(true);
+                    setIsMobile(true);
+                  }}
                 >
                   <span className="sr-only">Open sidebar</span>
                   <Bars3Icon className="h-6 w-6" aria-hidden="true" />

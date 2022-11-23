@@ -2,12 +2,12 @@ import React from "react";
 import { BiUserVoice } from "react-icons/bi";
 import { BiShoppingBag } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
-import { MdSpeed } from "react-icons/md";
+import { MdSpeed, MdOutlineAutoAwesomeMotion } from "react-icons/md";
 
 export const mockSidebar = [
   {
     id: 1,
-    label: "Exemplo",
+    label: "CONEXÃO CLIENTE",
     icon: <BiUserVoice fontSize="25" color="white" />,
     subMenus: [
       {
@@ -30,8 +30,8 @@ export const mockSidebar = [
 
   {
     id: 4,
-    label: "Exemplo",
-    icon: <CgClose fontSize="25" color="white" />,
+    label: "EXEMPLO",
+    icon: <MdOutlineAutoAwesomeMotion fontSize="25" color="white" />,
     subMenus: [
       {
         name: "Example SubItem 4",
