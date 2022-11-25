@@ -84,6 +84,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   <div className="self-end">
                     <button
                       type="button"
+                      data-testid="clickMobileMenu"
                       className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none"
                       onClick={() => {
                         setMobileMenuOpen(false);
@@ -118,8 +119,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                         }}
                         className={
                           variant === "connexio"
-                            ? "flex items-center p-4 w-full hover:bg-connexio-hover cursor-pointer"
-                            : "flex items-center p-4 w-full hover:bg-klub-hover cursor-pointer"
+                            ? "flex items-center p-4 w-full text-white cursor-pointer"
+                            : "flex items-center p-4 w-full text-white cursor-pointer"
                         }
                       >
                         <div className="flex">
@@ -129,14 +130,13 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                               <div className="flex">
                                 <span
                                   className={
-                                    "flex text-white bold ml-4 text-xl"
+                                    "flex  bold ml-4 text-xl"
                                   }
                                 >
                                   {item.label}
                                 </span>
                                 <BsArrowDownShort
                                   fontSize={20}
-                                  color="white"
                                   className={
                                     expandOptions && selectedItem === item.id
                                       ? "mt-1 rotate-0 ease-in-out duration-200"
@@ -163,8 +163,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                         key={`menuitem-sidebar-${indexMenuitem}`}
                                         className={
                                           variant === "connexio"
-                                            ? "mt-2 ml-2 self-start w-full rounded-lg hover:bg-connexio-primary-light p-4 text-white cursor-pointer"
-                                            : "mt-2 ml-2 self-start w-full rounded-lg hover:bg-klub-primary p-4 text-white cursor-pointer"
+                                            ? "mt-2 ml-2 self-start w-full rounded-lg hover:bg-white p-4 text-white cursor-pointer"
+                                            : "mt-2 ml-2 self-start w-full rounded-lg hover:bg-white  p-4 text-white  cursor-pointer"
                                         }
                                       >
                                         <div className="flex gap-0.5">
@@ -197,7 +197,6 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                               >
                                 <BsArrowDownShort
                                   fontSize={15}
-                                  color="white"
                                   className={
                                     expandOptions && selectedItem === item.id
                                       ? "rotate-0 ease-in-out duration-200"
@@ -225,8 +224,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                       key={`menuitem-sidebar-${indexMenuitem}`}
                                       className={
                                         variant === "connexio"
-                                          ? "hover:bg-connexio-primary-light hover:rounded p-2 text-white cursor-pointer"
-                                          : "hover:bg-klub-primary hover:rounded p-2 text-white cursor-pointer"
+                                          ? "hover:bg-connexio-primary-light hover:rounded text-white p-2 cursor-pointer"
+                                          : "hover:bg-klub-primary text-white hover:rounded p-2 cursor-pointer"
                                       }
                                     >
                                       <div className="flex gap-0.5">
@@ -274,16 +273,16 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
             <div
               className={
                 variant === "connexio"
-                  ? "flex min-h-0 flex-1 flex-col overflow-y-auto bg-connexio-primary-light"
-                  : "flex min-h-0 flex-1 flex-col overflow-y-auto bg-klub-primary"
+                  ? "flex min-h-0 flex-1 flex-col overflow-y-auto bg-connexio-primary-light text-white  "
+                  : "flex min-h-0 flex-1 flex-col overflow-y-auto bg-klub-primary text-white  "
               }
             >
               <div className="flex-1">
                 <div
                   className={
                     openMenu
-                      ? "flex items-center justify-end py-4"
-                      : "flex items-center justify-center py-4"
+                      ? "flex text-white items-center justify-end py-4"
+                      : "flex text-white items-center justify-center py-4"
                   }
                   onClick={() => {
                     //setMobileMenuOpen(true);
@@ -293,6 +292,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                 >
                   {openMenu ? (
                     <MdClose
+                      data-testid="clickOpenMenu"
                       fontSize="30"
                       color="white"
                       className="cursor-pointer mr-2"
@@ -301,6 +301,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   ) : (
                     <>
                       <BiMenu
+                        data-testid="clickOpenMenu"
                         fontSize="30"
                         color="white"
                         className="cursor-pointer"
@@ -332,8 +333,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                       }}
                       className={
                         variant === "connexio"
-                          ? `flex ${alignIcons} items-center w-full p-4 hover:bg-connexio-hover cursor-pointer`
-                          : `flex ${alignIcons} items-center w-full p-4 hover:bg-klub-hover cursor-pointer`
+                          ? `flex ${alignIcons} items-center w-full p-4 text-white hover:bg-white hover:text-klub-primary hover: cursor-pointer`
+                          : `flex ${alignIcons} items-center w-full p-4 text-white hover:bg-white hover:text-klub-primary hover: cursor-pointer`
                       }
                     >
                       <div className="flex">
@@ -343,7 +344,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                             <span
                               className={
                                 openMenu
-                                  ? "flex text-white bold ml-4"
+                                  ? "flex bold ml-4"
                                   : "hidden"
                               }
                             >
@@ -355,8 +356,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                 openMenu === false &&
                                 selectedItem === item.id
                                   ? variant === "klub"
-                                    ? "flex flex-col justify-center rounded-lg drop-shadow-2xl bg-klub-primary min-w-min p-2 absolute left-[90px]"
-                                    : "flex flex-col justify-center rounded-lg drop-shadow-2xl bg-connexio-primary-light min-w-min p-2 absolute left-[90px]"
+                                    ? "flex flex-col justify-center rounded-lg text-white drop-shadow-2xl bg-klub-primary min-w-min p-2 absolute left-[90px]"
+                                    : "flex flex-col justify-center rounded-lg text-white drop-shadow-2xl bg-connexio-primary-light min-w-min p-2 absolute left-[90px]"
                                   : "hidden"
                               }
                             >
@@ -370,8 +371,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                       key={`menuitem-sidebar-${indexMenuitem}`}
                                       className={
                                         variant === "connexio"
-                                          ? "hover:bg-connexio-hover hover:rounded p-3 text-white cursor-pointer"
-                                          : "hover:bg-klub-hover hover:rounded p-3 text-white cursor-pointer"
+                                          ? "text-white hover:rounded p-3 cursor-pointer"
+                                          : "text-white hover:rounded p-3  cursor-pointer"
                                       }
                                     >
                                       {/* closed menu */}
@@ -401,7 +402,6 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                             >
                               <BsArrowDownShort
                                 fontSize={15}
-                                color="white"
                                 className={
                                   expandOptions && selectedItem === item.id
                                     ? "rotate-0 ease-in-out duration-200"
@@ -429,8 +429,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                     key={`menuitem-sidebar-${indexMenuitem}`}
                                     className={
                                       variant === "connexio"
-                                        ? "hover:bg-connexio-primary-light hover:rounded p-2 text-white cursor-pointer"
-                                        : "hover:bg-klub-primary hover:rounded p-2 text-white cursor-pointer"
+                                        ? "text-white hover:rounded p-2 cursor-pointer"
+                                        : "text-white hover:rounded p-2 cursor-pointer"
                                     }
                                   >
                                     <div className="flex gap-0.5">
@@ -462,7 +462,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
         <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
           {/* Mobile top navigation */}
           <div className="lg:hidden">
-            <div className="flex items-center justify-between bg-indigo-600 py-2 px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between  py-2 px-4 sm:px-6 lg:px-8">
               <div>
                 <img
                   className="h-8 w-auto"
@@ -475,8 +475,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   type="button"
                   className={
                     variant === "klub"
-                      ? "-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-600 text-klub-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                      : "-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-600 text-connexio-primary-light hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                      ? "-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md  text-klub-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                      : "-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md  text-connexio-primary-light  focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                   }
                   onClick={() => {
                     setMobileMenuOpen(true);

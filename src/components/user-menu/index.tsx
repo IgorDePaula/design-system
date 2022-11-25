@@ -22,7 +22,6 @@ const UserMenu = ({ variant }: HeaderProps) => {
         className={`${
           showDropdown ? "block" : "hidden"
         } absolute mt-10 z-10 w-44 bg-white-bg rounded-lg divide-y divide-gray-400 shadow`}
-        onBlur={() => setShowDropdown(false)}
       >
         <ul className="text-gray-600 dark:text-primary-color font-bold">
           <li className="cursor-pointer">

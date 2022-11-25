@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
 export declare type AvatarType = {
-    url: string;
+    url?: string;
+    variant: "connexio" | "klub";
 };
 declare const Avatar: React.FunctionComponent<AvatarType>;
 export default Avatar;

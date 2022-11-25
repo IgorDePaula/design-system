@@ -59,7 +59,8 @@ describe("Button", () => {
   });
   it("should call the onClick method", () => {
     const onClick = jest.fn();
-    const { getByTestId } = render(<Button text="acessar" onclick={onClick} />);
+    const { getByTestId } = render(
+    <Button text="acessar" onclick={onClick} />);
 
     fireEvent.click(getByTestId("button"));
     expect(onClick).toBeCalled();
