@@ -1,51 +1,20 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import Sidebar from "../../../src/components/sidebar";
-import { BiShoppingBag } from "react-icons/bi";
-import { CgClose } from "react-icons/cg";
-import { AiFillPlusCircle } from "react-icons/ai";
-import { BsCart4 } from "react-icons/bs";
+import { mockSidebar } from "../../../src/components/sidebar/mock";
 
 describe("Sidebar", () => {
-  let options = [
-    {
-      label: "",
-      name: "1",
-      id: 1,
-      icon: <CgClose color="white" fontSize={25} />,
-    },
-    {
-      label: "",
-      name: "2",
-      id: 2,
-      icon: <AiFillPlusCircle color="white" fontSize={25} />,
-    },
-    {
-      label: "",
-      name: "3",
-      id: 3,
-      icon: <BiShoppingBag color="white" fontSize={25} />,
-    },
-    {
-      label: "",
-      name: "4",
-      id: 4,
-      icon: <BsCart4 color="white" fontSize={25} />,
-    },
-  ];
-
-  it("renders sidebar  with connexio theme", () => {
-    const { container } = render(<Sidebar variant="connexio" />);
-    expect(container).toMatchSnapshot();
-  });
-
-  it("renders sidebar with klub theme", () => {
-    const { container } = render(<Sidebar variant="klub" options={options} />);
+  it("renders sidebar", () => {
+    const { container } = render(
+      <Sidebar variant="connexio" options={[...mockSidebar]} />
+    );
     expect(container).toMatchSnapshot();
   });
 
   it("should call the openMenu click function", () => {
-    const { getByTestId } = render(<Sidebar />);
+    const { getByTestId } = render(
+      <Sidebar variant="klub" options={mockSidebar} />
+    );
     const onClickOpenMenu = getByTestId("clickOpenMenu");
     let countClicked = 0;
     fireEvent.click(onClickOpenMenu);
@@ -56,15 +25,29 @@ describe("Sidebar", () => {
     expect(countClicked).toEqual(2);
   });
 
-  it("should call the mobile menu click function", () => {
-    const { getByTestId } = render(<Sidebar />);
-    const onClickMobileMenu = getByTestId("clickMobileMenu");
-    let countClicked = 0;
-    fireEvent.click(onClickMobileMenu);
-    countClicked++;
-    fireEvent.click(onClickMobileMenu);
-    countClicked++;
-    expect(countClicked).toEqual(2);
+  it("should call changed on click option", () => {
+    const { getAllByTestId } = render(
+      <Sidebar variant="klub" options={mockSidebar} />
+    );
+    let countCalled = 0;
+    const itemOptions = getAllByTestId("option-menu");
+    for (const itemOption of itemOptions) {
+      fireEvent.click(itemOption);
+      fireEvent.click(itemOption);
+      countCalled++;
+    }
+    expect(countCalled).toEqual(itemOptions.length);
   });
 
+  // it("should call the mobile menu click function", () => {
+  //   const { getByTestId } = render(
+  //     <Sidebar variant="connexio" options={mockSidebar} />
+  //   );
+  //   const onOpenMobileMenu = getByTestId("open-mobile-menu");
+  //   let countClicked = 0;
+  //   fireEvent.click(onOpenMobileMenu);
+  //   countClicked++;
+
+  //   expect(countClicked).toEqual(2);
+  // });
 });

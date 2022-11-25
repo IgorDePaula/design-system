@@ -1,12 +1,10 @@
 import React, { Fragment, ReactElement, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { AiFillPlusCircle } from "react-icons/ai";
-import { BiShoppingBag, BiMenu } from "react-icons/bi";
-import { BsCart4 } from "react-icons/bs";
-import { CgClose } from "react-icons/cg";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import { BiMenu } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import { BsArrowDownShort } from "react-icons/bs";
+
 type OptionsProps = {
   id: number;
   label?: string;
@@ -21,19 +19,6 @@ type SidebarProps = {
   options?: OptionsProps[];
 };
 
-const user = {
-  name: "Emily Selman",
-  email: "emily.selman@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
-const navigation = [
-  { name: "1", icon: <CgClose color="white" fontSize={25} /> },
-  { name: "2", icon: <AiFillPlusCircle color="white" fontSize={25} /> },
-  { name: "3", icon: <BiShoppingBag color="white" fontSize={25} /> },
-  { name: "4", icon: <BsCart4 color="white" fontSize={25} /> },
-];
-
 const Sidebar = ({ variant, options }: SidebarProps) => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -43,6 +28,22 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<number>();
   const alignIcons = openMenu ? "justify-start" : "justify-center";
+
+  const handleChangeMobileMenu = () => {
+    setMobileMenuOpen((prevState) => !prevState);
+    setIsMobile((prevState) => !prevState);
+  };
+
+  const handleOpenOption = (item: OptionsProps) => () => {
+    expandOptions && selectedItem === item.id
+      ? setExpandOptions((prevState) => !prevState)
+      : setExpandOptions(true);
+    openOptionsWhenMenuClosed && selectedItem === item.id
+      ? setOpenOptionsWhenMenuClosed((prevState) => !prevState)
+      : setOpenOptionsWhenMenuClosed(true);
+    setSelectedItem(item.id);
+  };
+
   return (
     <>
       <div className="flex h-screen overflow-y-auto">
@@ -84,12 +85,9 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   <div className="self-end">
                     <button
                       type="button"
-                      data-testid="clickMobileMenu"
+                      data-testid="close-mobile-menu"
                       className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        setIsMobile(false);
-                      }}
+                      onClick={handleChangeMobileMenu}
                     >
                       <MdClose
                         fontSize="30"
@@ -106,17 +104,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   >
                     {options?.map((item) => (
                       <div
-                        onClick={() => {
-                          expandOptions && selectedItem === item.id
-                            ? setExpandOptions((prevState) => !prevState)
-                            : setExpandOptions(true);
-                          openOptionsWhenMenuClosed && selectedItem === item.id
-                            ? setOpenOptionsWhenMenuClosed(
-                                (prevState) => !prevState
-                              )
-                            : setOpenOptionsWhenMenuClosed(true);
-                          setSelectedItem(item.id);
-                        }}
+                        data-testid="item-option"
+                        onClick={handleOpenOption(item)}
                         className={
                           variant === "connexio"
                             ? "flex items-center p-4 w-full text-white cursor-pointer"
@@ -128,11 +117,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                           <div className="flex-col">
                             <div className="flex-col">
                               <div className="flex">
-                                <span
-                                  className={
-                                    "flex  bold ml-4 text-xl"
-                                  }
-                                >
+                                <span className={"flex  bold ml-4 text-xl"}>
                                   {item.label}
                                 </span>
                                 <BsArrowDownShort
@@ -253,15 +238,12 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   </nav>
                 </Dialog.Panel>
               </Transition.Child>
-              <div className="w-14 flex-shrink-0" aria-hidden="true">
-                {/* Force sidebar to shrink to fit close icon */}
-              </div>
+              <div className="w-14 flex-shrink-0" aria-hidden="true" />
             </div>
           </Dialog>
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-
         <div className="hidden lg:flex lg:flex-shrink-0">
           <div
             className={
@@ -292,7 +274,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                 >
                   {openMenu ? (
                     <MdClose
-                      data-testid="clickOpenMenu"
+                      data-testid="clickCloseMenu"
                       fontSize="30"
                       color="white"
                       className="cursor-pointer mr-2"
@@ -320,17 +302,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                 >
                   {options?.map((item) => (
                     <div
-                      onClick={() => {
-                        expandOptions && selectedItem === item.id
-                          ? setExpandOptions((prevState) => !prevState)
-                          : setExpandOptions(true);
-                        openOptionsWhenMenuClosed && selectedItem === item.id
-                          ? setOpenOptionsWhenMenuClosed(
-                              (prevState) => !prevState
-                            )
-                          : setOpenOptionsWhenMenuClosed(true);
-                        setSelectedItem(item.id);
-                      }}
+                      data-testid="option-menu"
+                      onClick={handleOpenOption(item)}
                       className={
                         variant === "connexio"
                           ? `flex ${alignIcons} items-center w-full p-4 text-white hover:bg-white hover:text-klub-primary hover: cursor-pointer`
@@ -342,11 +315,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                         <div className="flex-col">
                           <div className="flex">
                             <span
-                              className={
-                                openMenu
-                                  ? "flex bold ml-4"
-                                  : "hidden"
-                              }
+                              className={openMenu ? "flex bold ml-4" : "hidden"}
                             >
                               {item.label}
                             </span>
@@ -472,18 +441,15 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
               </div>
               <div>
                 <button
+                  data-testid="open-mobile-menu"
                   type="button"
                   className={
                     variant === "klub"
                       ? "-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md  text-klub-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                       : "-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md  text-connexio-primary-light  focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                   }
-                  onClick={() => {
-                    setMobileMenuOpen(true);
-                    setIsMobile(true);
-                  }}
+                  onClick={handleChangeMobileMenu}
                 >
-                  <span className="sr-only">Open sidebar</span>
                   <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
