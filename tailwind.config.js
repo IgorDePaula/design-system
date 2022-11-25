@@ -18,6 +18,12 @@ module.exports = {
         hover: "#cc6e00",
         secundary: "#2c8476",
       },
+      gray: {
+        100: "#f3f4f6",
+        200: "#ccc7be",
+        400: "#99948f",
+        600: "#66635f",
+      },
     },
   },
   plugins: [],

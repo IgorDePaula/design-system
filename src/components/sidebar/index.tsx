@@ -101,7 +101,9 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   <nav
                     aria-label="Sidebar"
                     className={
-                      "flex flex-col items-start space-y-3 w-full mx-auto mt-5"
+                      variant === "klub"
+                        ? "flex flex-col items-start space-y-3 w-full mx-auto mt-5 "
+                        : "flex flex-col items-start space-y-3 w-full mx-auto mt-5 "
                     }
                   >
                     {options?.map((item) => (
@@ -119,8 +121,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                         }}
                         className={
                           variant === "connexio"
-                            ? "flex items-center p-4 w-full text-white cursor-pointer"
-                            : "flex items-center p-4 w-full text-white cursor-pointer"
+                            ? "flex items-center p-4 w-full text-white cursor-pointer "
+                            : "flex items-center p-4 w-full text-white cursor-pointer "
                         }
                       >
                         <div className="flex">
@@ -128,11 +130,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                           <div className="flex-col">
                             <div className="flex-col">
                               <div className="flex">
-                                <span
-                                  className={
-                                    "flex  bold ml-4 text-xl"
-                                  }
-                                >
+                                <span className={"flex  bold ml-4 text-xl"}>
                                   {item.label}
                                 </span>
                                 <BsArrowDownShort
@@ -163,8 +161,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                         key={`menuitem-sidebar-${indexMenuitem}`}
                                         className={
                                           variant === "connexio"
-                                            ? "mt-2 ml-2 self-start w-full rounded-lg hover:bg-white p-4 text-white cursor-pointer"
-                                            : "mt-2 ml-2 self-start w-full rounded-lg hover:bg-white  p-4 text-white  cursor-pointer"
+                                            ? "mt-2 ml-2 self-start w-full rounded-lg   p-4 cursor-pointer"
+                                            : "mt-2 ml-2 self-start w-full rounded-lg  p-4   cursor-pointer"
                                         }
                                       >
                                         <div className="flex gap-0.5">
@@ -224,8 +222,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                       key={`menuitem-sidebar-${indexMenuitem}`}
                                       className={
                                         variant === "connexio"
-                                          ? "hover:bg-connexio-primary-light hover:rounded text-white p-2 cursor-pointer"
-                                          : "hover:bg-klub-primary text-white hover:rounded p-2 cursor-pointer"
+                                          ? "  hover:rounded p-2 cursor-pointer duration-700"
+                                          : " hover:rounded p-2 cursor-pointer duration-700"
                                       }
                                     >
                                       <div className="flex gap-0.5">
@@ -292,10 +290,13 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                 >
                   {openMenu ? (
                     <MdClose
-                      data-testid="clickOpenMenu"
+                      data-testid="clickCloseMenu"
                       fontSize="30"
-                      color="white"
-                      className="cursor-pointer mr-2"
+                      className={
+                        variant === "connexio"
+                          ? "cursor-pointer mr-2 hover:bg-white hover:text-connexio-primary-light duration-700 rounded-md"
+                          : "cursor-pointer mr-2 hover:bg-white hover:text-klub-primary duration-700 rounded-md"
+                      }
                       onClick={() => setOpenMenu(false)}
                     />
                   ) : (
@@ -303,8 +304,11 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                       <BiMenu
                         data-testid="clickOpenMenu"
                         fontSize="30"
-                        color="white"
-                        className="cursor-pointer"
+                        className={
+                          variant === "connexio"
+                            ? "cursor-pointer mr-2 hover:bg-white hover:text-connexio-primary-light duration-700 rounded-md"
+                            : "cursor-pointer mr-2 hover:bg-white hover:text-klub-primary duration-700 rounded-md"
+                        }
                         onClick={() => setOpenMenu(true)}
                       />
                     </>
@@ -333,8 +337,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                       }}
                       className={
                         variant === "connexio"
-                          ? `flex ${alignIcons} items-center w-full p-4 text-white hover:bg-white hover:text-klub-primary hover: cursor-pointer`
-                          : `flex ${alignIcons} items-center w-full p-4 text-white hover:bg-white hover:text-klub-primary hover: cursor-pointer`
+                          ? `flex ${alignIcons} items-center w-full p-4 text-white hover:bg-white hover:text-connexio-primary-light  duration-700 hover:cursor-pointer`
+                          : `flex ${alignIcons} items-center w-full p-4 text-white hover:bg-white hover:text-klub-primary duration-700 hover:cursor-pointer`
                       }
                     >
                       <div className="flex">
@@ -342,11 +346,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                         <div className="flex-col">
                           <div className="flex">
                             <span
-                              className={
-                                openMenu
-                                  ? "flex bold ml-4"
-                                  : "hidden"
-                              }
+                              className={openMenu ? "flex bold ml-4" : "hidden"}
                             >
                               {item.label}
                             </span>
@@ -356,8 +356,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                 openMenu === false &&
                                 selectedItem === item.id
                                   ? variant === "klub"
-                                    ? "flex flex-col justify-center rounded-lg text-white drop-shadow-2xl bg-klub-primary min-w-min p-2 absolute left-[90px]"
-                                    : "flex flex-col justify-center rounded-lg text-white drop-shadow-2xl bg-connexio-primary-light min-w-min p-2 absolute left-[90px]"
+                                    ? "flex flex-col justify-center rounded-md text-white drop-shadow-2xl  bg-klub-primary min-w-min p-1 absolute left-[90px]"
+                                    : "flex flex-col justify-center rounded-md text-white drop-shadow-2xl bg-connexio-primary-light   min-w-min p-1 absolute left-[90px]"
                                   : "hidden"
                               }
                             >
@@ -371,8 +371,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                       key={`menuitem-sidebar-${indexMenuitem}`}
                                       className={
                                         variant === "connexio"
-                                          ? "text-white hover:rounded p-3 cursor-pointer"
-                                          : "text-white hover:rounded p-3  cursor-pointer"
+                                          ? "hover:bg-white hover:text-connexio-primary-light hover:rounded-sm hover:duration-700 p-2 cursor-pointer"
+                                          : "hover:bg-white hover:text-klub-primary hover:duration-700 hover:rounded-sm p-2  cursor-pointer"
                                       }
                                     >
                                       {/* closed menu */}
@@ -429,11 +429,17 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                     key={`menuitem-sidebar-${indexMenuitem}`}
                                     className={
                                       variant === "connexio"
-                                        ? "text-white hover:rounded p-2 cursor-pointer"
-                                        : "text-white hover:rounded p-2 cursor-pointer"
+                                        ? "hover:bg-gray-100 hover:rounded p-2 cursor-pointer hover:duration-700"
+                                        : "hover:bg-gray-100 hover:rounded p-2 cursor-pointer hover:duration-700"
                                     }
                                   >
-                                    <div className="flex gap-0.5">
+                                    <div
+                                      className={
+                                        variant === "connexio"
+                                          ? "flex gap-0.5 p-1"
+                                          : "flex gap-0.5 p-1"
+                                      }
+                                    >
                                       <a
                                         href={itemSubmenus.path}
                                         target="blank"
