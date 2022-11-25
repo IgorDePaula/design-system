@@ -161,8 +161,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                         key={`menuitem-sidebar-${indexMenuitem}`}
                                         className={
                                           variant === "connexio"
-                                            ? "mt-2 ml-2 self-start w-full rounded-lg   p-4 cursor-pointer"
-                                            : "mt-2 ml-2 self-start w-full rounded-lg  p-4   cursor-pointer"
+                                            ? " ml-2 self-start w-full rounded-lg   p-4 cursor-pointer"
+                                            : "ml-2 self-start w-full rounded-lg  p-4   cursor-pointer"
                                         }
                                       >
                                         <div className="flex gap-0.5">
@@ -189,7 +189,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                               <div
                                 className={
                                   openMenu && isMobile === false
-                                    ? "flex self-center mt-2"
+                                    ? "flex self-center"
                                     : "hidden"
                                 }
                               >
@@ -208,7 +208,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                 openMenu &&
                                 expandOptions &&
                                 selectedItem === item.id
-                                  ? "flex flex-col mt-2"
+                                  ? "flex flex-col"
                                   : "hidden"
                               }
                             >
@@ -318,8 +318,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                   aria-label="Sidebar"
                   className={
                     openMenu
-                      ? "flex flex-col items-start space-y-3"
-                      : "flex flex-col items-center space-y-3"
+                      ? "flex flex-col items-start"
+                      : "flex flex-col items-center"
                   }
                 >
                   {options?.map((item) => (
@@ -371,8 +371,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                       key={`menuitem-sidebar-${indexMenuitem}`}
                                       className={
                                         variant === "connexio"
-                                          ? "hover:bg-white hover:text-connexio-primary-light hover:rounded-sm hover:duration-700 p-2 cursor-pointer"
-                                          : "hover:bg-white hover:text-klub-primary hover:duration-700 hover:rounded-sm p-2  cursor-pointer"
+                                          ? "hover:bg-white hover:text-connexio-primary-light rounded-sm duration-700 p-2 cursor-pointer"
+                                          : "hover:bg-white hover:text-klub-primary duration-700 rounded-sm p-2  cursor-pointer"
                                       }
                                     >
                                       {/* closed menu */}
@@ -385,7 +385,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                           }
                                         >
                                           {itemSubmenus.icon}
-                                          <span className="text-sm">
+                                          <span className="text-sm m-2">
                                             {itemSubmenus.name}
                                           </span>
                                         </a>
@@ -397,7 +397,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
 
                             <div
                               className={
-                                openMenu ? "flex self-center mt-2" : "hidden"
+                                openMenu ? "flex self-center" : "hidden"
                               }
                             >
                               <BsArrowDownShort
@@ -415,7 +415,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                               openMenu &&
                               expandOptions &&
                               selectedItem === item.id
-                                ? "flex flex-col mt-2"
+                                ? "flex flex-col mt-3"
                                 : "hidden"
                             }
                           >
@@ -429,8 +429,8 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                     key={`menuitem-sidebar-${indexMenuitem}`}
                                     className={
                                       variant === "connexio"
-                                        ? "hover:bg-gray-100 hover:rounded p-2 cursor-pointer hover:duration-700"
-                                        : "hover:bg-gray-100 hover:rounded p-2 cursor-pointer hover:duration-700"
+                                        ? "hover:bg-gray-100 rounded p-1  cursor-pointer hover:duration-700"
+                                        : "hover:bg-gray-100 rounded p-1  cursor-pointer hover:duration-700"
                                     }
                                   >
                                     <div
@@ -446,7 +446,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                         onClick={() => setExpandOptions(false)}
                                       >
                                         {itemSubmenus.icon}
-                                        <span className="text-sm">
+                                        <span className="text-sm m-2">
                                           {itemSubmenus.name}
                                         </span>
                                       </a>
