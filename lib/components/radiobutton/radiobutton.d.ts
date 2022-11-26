@@ -2,12 +2,14 @@
 export declare type RadioButtonType = {
     name: string;
     disabled?: boolean;
-    hasError?: boolean;
     label?: string;
     checked?: string | number;
     options: RadioButtonOptionType[];
     position?: 'vertical' | 'horizontal';
-    getChecked: (param: string | number | null) => void;
+    required?: boolean;
+    isSubmiting?: boolean;
+    getValue?: (value: object) => void;
+    getError?: (value: object) => void;
 };
 export declare type RadioButtonOptionType = {
     title: string;
@@ -19,10 +21,12 @@ export declare type OptionsProps = {
     options: RadioButtonOptionType[];
     label?: string;
     name: string;
-    hasError?: boolean;
+    required?: boolean;
     disabled?: boolean;
+    isSubmiting?: boolean;
     checked?: string | number | null | undefined;
-    getChecked: (param: string | number | null) => void;
+    getValue?: (value: object) => void;
+    getError?: (value: object) => void;
 };
 export default RadioButton;
 //# sourceMappingURL=radiobutton.d.ts.map

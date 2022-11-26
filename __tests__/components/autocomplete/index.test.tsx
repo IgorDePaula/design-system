@@ -5,12 +5,12 @@ import people from "../../../src/mocks/autocomplete";
 describe('input', () => {
 
     it('renders snapshot', () => {
-        const {container} = render(<Autocomplete options={people} />)
+        const {container} = render(<Autocomplete name='teste' options={people} />)
         expect(container).toMatchSnapshot()
     })
 
     it('renders a autocomplete', async () => {
-        const {findByTestId} =  render(<Autocomplete options={people} />)
+        const {findByTestId} =  render(<Autocomplete name='teste' options={people} />)
 
         const autocomplete = await findByTestId('autocomplete')
 
@@ -19,7 +19,7 @@ describe('input', () => {
     })
 
     it('renders a autocomplete with label', async () => {
-        const {findByTestId} = render(<Autocomplete options={people} label='Teste' />)
+        const {findByTestId} = render(<Autocomplete name='teste' options={people} label='Teste' />)
 
         const label = await findByTestId('label')
         expect(label).toBeInTheDocument()
@@ -27,7 +27,7 @@ describe('input', () => {
 
     })
     it('renders a autocomplete disabled', async () => {
-        const {findByTestId} = render(<Autocomplete options={people} label='Teste' disabled={true} />)
+        const {findByTestId} = render(<Autocomplete name='teste' options={people} label='Teste' disabled={true} />)
         const autocomplete = await findByTestId('autocomplete')
         expect(autocomplete).toBeDisabled()
 
