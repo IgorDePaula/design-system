@@ -22,19 +22,40 @@ export default {
             control: {type: 'radio'}
         },
         options:{
-            description:'Array de opcoes do autocomplete, no par label:value'
+            description:'Array de opcoes do select, no par label:value'
         },
         name: {
             description: 'Nome do campo'
+        },getValue: {
+            description: 'Funcao para capturar o valor setado no select'
         },
-        getState:{
-            description:'Funcao para capturar o valor setado no autocomplete'
+        selectedValue: {
+            description: 'parametro para indicar o valor default do select'
         },
-        rules: {
-            description: 'Array de funcoes de validacao do campo',
-            defaultValue: []
+        required: {
+            description: 'Boolean para indicar quando o campo é um recurso  obrigatório do formulário',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
         },
-        hasError: {
+        isSubmiting: {
+            description: 'Boolean para indicar quando o campo e o formulario foram submetidos, para validar e' +
+                ' recuperar seu valor',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        getError: {
             description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
         },
     },
@@ -48,19 +69,41 @@ export default {
         },
         disabled: {
             description: 'Informa campo desabilitado'
+        },getValue: {
+            description: 'Funcao para capturar o valor setado no select'
         },
-        rules: {
-            description: 'Array de funcoes de validacao do campo'
+        selectedValue: {
+            description: 'parametro para indicar o valor default do select'
         },
-        hasError: {
+        required: {
+            description: 'Boolean para indicar quando o campo é um recurso  obrigatório do formulário',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        isSubmiting: {
+            description: 'Boolean para indicar quando o campo e o formulario foram submetidos, para validar e' +
+                ' recuperar seu valor',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        getError: {
             description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
-        },
-        getState:{
-            description:'Funcao para capturar o valor setado no autocomplete'
         },
         docs: {
             description: {
-                component: 'Componente autocomplete de formularios',
+                component: 'Componente select de formularios',
             },
         },
     },
@@ -80,14 +123,10 @@ export const WithDefaultValue = Template.bind({});
 
 WithDefaultValue.args = {options: people, selectedValue: 'Benedict Kessler'}
 
-export const WithError = Template.bind({});
-
-WithError.args = {
-    name: 'Teste',
-    hasError: true,
-    options: people
-}
-
 export const Disabled = Template.bind({});
 
 Disabled.args = {name: 'Teste', disabled: true, options: people}
+
+export const WithError = Template.bind({});
+
+WithError.args = {name: 'Teste',  options: people, required:true, isSubmiting:true}

@@ -7,12 +7,14 @@ import Label from "@components/label";
 export type RadioButtonType = {
     name: string
     disabled?: boolean
-    hasError?: boolean
     label?: string
     checked?: string | number
     options: RadioButtonOptionType[]
     position?: 'vertical' | 'horizontal',
-    getChecked: (param: string | number | null) => void
+    required?: boolean
+    isSubmiting?: boolean
+    getValue?: (value: object) => void
+    getError?: (value: object) => void
 }
 
 export type RadioButtonOptionType = {
@@ -23,15 +25,15 @@ export type RadioButtonOptionType = {
 
 const RadioButton = (props: RadioButtonType) => {
 
-    const {label, options, position = 'horizontal', hasError, name, disabled, checked, getChecked} = props
+    const {label, options, position = 'horizontal', name, disabled, checked, isSubmiting, getValue, getError, required} = props
 
     // @ts-ignore
     return <div data-testid='radio'>
         {position == 'horizontal' ?
-            <Horizontal name={name} options={options} getChecked={getChecked}  label={label} checked={checked} disabled={disabled}
-                        hasError={hasError}/> :
-            <Vertical name={name} options={options} getChecked={getChecked} label={label} checked={checked} disabled={disabled}
-                      hasError={hasError}/>}
+            <Horizontal name={name} options={options} getValue={getValue} getError={getError} isSubmiting={isSubmiting}  label={label} checked={checked} disabled={disabled}
+                        required={required}/> :
+            <Vertical name={name} options={options} getValue={getValue} getError={getError} isSubmiting={isSubmiting} label={label} checked={checked} disabled={disabled}
+                      required={required}/>}
     </div>
 
 }
@@ -39,28 +41,45 @@ export type OptionsProps = {
     options: RadioButtonOptionType[]
     label?: string
     name: string
-    hasError?: boolean
+    required?: boolean
     disabled?: boolean
+    isSubmiting?: boolean
     checked?: string | number | null | undefined
-    getChecked: (param: string | number | null) => void
+    getValue?: (value: object) => void
+    getError?: (value: object) => void
 }
 
-const Horizontal = ({options, label, name, checked, hasError, disabled, getChecked}: OptionsProps) => {
+const Horizontal = ({options, label, name, checked, disabled, getValue, getError, isSubmiting, required}: OptionsProps) => {
 
     const [selected, setSelected] = useState(checked)
-    const [error, setError] = useState(hasError)
+    const [hasError, setError] = useState<boolean>(false)
 
     useEffect(() => {
-        if (selected) {
-            setError(false)
-        }
+        const pairValue = {}
+        // @ts-ignore
+        pairValue[name] = selected
+        getValue && getValue(pairValue)
+        hasError && setError(false)
     }, [selected])
 
-    const classes = error ? `border-2 border-red-300 focus:border-red-500 rounded-lg horizontal ${disabled ? 'disabled':''}` : `horizontal ${disabled ? 'disabled':''}`
+    useEffect(() => {
+        if (required && isSubmiting && !selected) {
+            const pairError = {}
+            // @ts-ignore
+            pairError[name] = true
+            getError && getError(pairError)
+            setError(true)
+        }
+        if (required && isSubmiting && selected) {
+            setError(false)
+        }
+    }, [isSubmiting])
+
+    const classes = hasError ? `border-2 border-red-300 focus:border-red-500 rounded-lg horizontal ${disabled ? 'disabled':''}` : `horizontal ${disabled ? 'disabled':''}`
     const disabledClass = disabled ? 'cursor-not-allowed' : 'cursor-pointer '
 
     return (
-        <RadioGroup value={selected} onChange={e=>{setSelected(e);getChecked(e)}} disabled={disabled} name={name} className={classes}>
+        <RadioGroup value={selected} onChange={setSelected} disabled={disabled} name={name} className={classes}>
             {label && <Label id={label}>{label}</Label>}
             <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
                 {options.map((option: RadioButtonOptionType, index: number) => {
@@ -110,21 +129,36 @@ const Horizontal = ({options, label, name, checked, hasError, disabled, getCheck
 }
 
 
-const Vertical = ({options, label, name, checked, hasError, disabled, getChecked}: OptionsProps) => {
+const Vertical = ({options, label, name, checked, disabled, getValue, getError, isSubmiting, required}: OptionsProps) => {
     const [selected, setSelected] = useState(checked)
-    const [error, setError] = useState(hasError)
+    const [hasError, setError] = useState<boolean>(false)
 
     useEffect(() => {
-        if (selected) {
-            setError(false)
-        }
+        const pairValue = {}
+        // @ts-ignore
+        pairValue[name] = selected
+        getValue && getValue(pairValue)
+        hasError && setError(false)
     }, [selected])
 
-    const classes = error ? `border-2 border-red-300 focus:border-red-500 rounded-lg vertical ${disabled ? 'disabled':''}` : `vertical ${disabled ? 'disabled':''}`
+    useEffect(() => {
+        if (required && isSubmiting && !selected) {
+            const pairError = {}
+            // @ts-ignore
+            pairError[name] = true
+            getError && getError(pairError)
+            setError(true)
+        }
+        if (required && isSubmiting && selected) {
+            setError(false)
+        }
+    }, [isSubmiting])
+
+    const classes = hasError ? `border-2 border-red-300 focus:border-red-500 rounded-lg vertical ${disabled ? 'disabled':''}` : `vertical ${disabled ? 'disabled':''}`
     const disabledClass = disabled ? 'cursor-not-allowed' : 'cursor-pointer '
 
     return (
-        <RadioGroup value={selected} onChange={e=>{setSelected(e);getChecked(e)}} disabled={disabled} name={name} className={classes}>
+        <RadioGroup value={selected} onChange={ setSelected } disabled={disabled} name={name} className={classes}>
             {label && <Label id={label}>{label}</Label>}
             <div className="space-y-4">
                 {options.map((option: RadioButtonOptionType, index: number) => (
@@ -135,8 +169,7 @@ const Vertical = ({options, label, name, checked, hasError, disabled, getChecked
                             classNames(
                                 checked ? 'border-transparent' : 'border-gray-300',
                                 active ? 'border-indigo-500 ring-2 ring-indigo-500' : '',
-                                `relative block ${disabledClass} rounded-lg border bg-white px-6 py-4 shadow-sm` +
-                                ' focus:outline-none sm:flex sm:justify-between'
+                                `relative flex ${disabledClass} rounded-lg border bg-white p-4 shadow-sm focus:outline-none`
                             )
                         }
                     >

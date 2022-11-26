@@ -6,12 +6,12 @@ import React from 'react';
 
 describe("Switcher", () => {
     it('renders snapshot', () => {
-        const {container} = render(<Switcher />)
+        const {container} = render(<Switcher name='configuration' />)
         expect(container).toMatchSnapshot()
     })
 
     it('renders a switcher', async () => {
-        const {findByTestId} = render(<Switcher />)
+        const {findByTestId} = render(<Switcher name='configuration'  />)
 
         const button = await findByTestId('switcher')
 
@@ -19,7 +19,7 @@ describe("Switcher", () => {
     })
 
     it('renders a switcher with label', async () => {
-        render(<Switcher label='Opção habilitada?' />)
+        render(<Switcher name='configuration' label='Opção habilitada?' />)
 
         const label = await screen.getByText('Opção habilitada?')
 

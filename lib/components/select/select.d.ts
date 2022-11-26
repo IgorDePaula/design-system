@@ -5,8 +5,10 @@ export declare type SelectType = {
     name: string;
     options: SelectOptionType[];
     disabled?: boolean;
-    getState?: (param: string | number | undefined) => void;
-    hasError?: boolean;
+    required?: boolean;
+    isSubmiting?: boolean;
+    getValue?: (value: object) => void;
+    getError?: (value: object) => void;
 };
 export declare type SelectOptionType = {
     label: string;

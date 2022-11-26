@@ -17,22 +17,47 @@ export default {
     title: 'UI/Form/Radio',
     component: Radio,
     argTypes: {
-
+        name: {
+            description: 'Nome do campo'
+        },
         label: {
             description: 'Label do campo'
         },
         options: {
             description: 'Opcoes do campo'
         },
-        getChecked: {
+        getValue: {
             description: 'Funcao para capturar o valor selecionado pelo usuario'
+        },
+        getError: {
+            description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
         },
         checked: {
             description: 'Label do campo',
             defaultValue: ''
         },
-        name: {
-            description: 'Nome do campo'
+        required: {
+            description: 'Boolean para indicar quando o campo é um recurso  obrigatório do formulário',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        isSubmiting: {
+            description: 'Boolean para indicar quando o campo e o formulario foram submetidos, para validar e' +
+                ' recuperar seu valor',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
         },
         disabled: {
             description: 'Informa campo desabilitado',
@@ -48,16 +73,13 @@ export default {
         position: {
             description: 'Informa posicao do campo: horizontal ou vertical. Default  horizontal',
             defaultValue: 'horizontal',
-            options: ['horizontal','vertical'],
+            options: ['horizontal', 'vertical'],
             table: {
                 type: [
-                    'horizontal','vertical'
+                    'horizontal', 'vertical'
                 ]
             },
             control: {type: 'radio'}
-        },
-        hasError: {
-            description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
         },
     },
     parameters: {
@@ -65,10 +87,13 @@ export default {
         label: {
             description: 'Label do campo'
         },
+        getError: {
+            description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
+        },
         options: {
             description: 'Opcoes do campo'
         },
-        getChecked: {
+        getValue: {
             description: 'Funcao para capturar o valor selecionado pelo usuario'
         },
         checked: {
@@ -85,8 +110,28 @@ export default {
             description: 'Informa posicao do campo: horizontal ou vertical. Default  horizontal',
 
         },
-        hasError: {
-            description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
+        required: {
+            description: 'Boolean para indicar quando o campo é um recurso  obrigatório do formulário',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        isSubmiting: {
+            description: 'Boolean para indicar quando o campo e o formulario foram submetidos, para validar e' +
+                ' recuperar seu valor',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
         },
         docs: {
             description: {
@@ -116,7 +161,9 @@ export const WithError = Template.bind({});
 WithError.args = {
     name: 'Teste',
     options: mailingLists,
-    hasError: true
+    label: 'Teste',
+    required: true,
+    isSubmiting: true
 }
 
 export const Disabled = Template.bind({});
@@ -125,7 +172,7 @@ Disabled.args = {name: 'Teste', options: mailingLists, disabled: true}
 
 export const Horizontal = Template.bind({});
 
-Horizontal.args = {name: 'Teste', options: mailingLists, disabled: true, position:'horizontal'}
+Horizontal.args = {name: 'Teste', options: mailingLists, disabled: true, position: 'horizontal'}
 
 export const Vertical = Template.bind({});
 

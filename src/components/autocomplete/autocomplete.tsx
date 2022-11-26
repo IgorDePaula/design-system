@@ -5,12 +5,14 @@ import {Combobox as Combo} from '@headlessui/react'
 
 export type AutocompleteType = {
     label?: string
+    name:string
     selectedValue?: string
     options:AutocompleteOptionType[]
     disabled?: boolean
-    getState?:(param:string|number|undefined)=>void
-    rules?: ((params: string | null | undefined) => (boolean | string))[]
-    hasError?: (params: boolean) => void
+    required?: boolean
+    isSubmiting?: boolean
+    getValue?: (value: object) => void
+    getError?: (value: object) => void
 }
 
 export type AutocompleteOptionType = {
@@ -20,12 +22,11 @@ export type AutocompleteOptionType = {
 }
 
 const Autocomplete = (props: AutocompleteType) => {
-    const {label, selectedValue, options, rules = [], getState, disabled} = props
+    const {label, selectedValue, options, name, required, getValue, getError, isSubmiting, disabled} = props
     const [selected, setSelected] = useState<string | number | undefined>(selectedValue)
     const [query, setQuery] = useState('')
 
-    const validation = rules && rules.map(fn => fn(selectedValue)).filter(Boolean)
-    const hasError = Boolean(validation.length)
+    const [hasError, setError] = useState<boolean>(false)
     const classes = hasError ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-gray-500'
     const filteredOptions =
         query === ''
@@ -34,19 +35,36 @@ const Autocomplete = (props: AutocompleteType) => {
                 return option.value.includes(query.toLowerCase())
             })
 
-    useEffect(()=>{
-        getState && getState(selected)
+    useEffect(() => {
+        const pairValue = {}
+        // @ts-ignore
+        pairValue[name] = selected
+        getValue && getValue(pairValue)
+        hasError && setError(false)
     }, [selected])
+
+    useEffect(() => {
+        if (required && isSubmiting && !selected) {
+            const pairError = {}
+            // @ts-ignore
+            pairError[name] = true
+            getError && getError(pairError)
+            setError(true)
+        }
+        if (required && isSubmiting && selected) {
+            setError(false)
+        }
+    }, [isSubmiting])
 
     return (
         <Combo value={selected} data-testid='autocomplete' onChange={setSelected} disabled={disabled} >
-            <Combo.Button disabled={disabled}>
+            <Combo.Button disabled={disabled} className={'relative w-full text-left'}>
                 {label && <Label id={'label'}>{label}</Label>}
                     <Combo.Input data-testid='combo-input'  disabled={disabled} className={`block w-full rounded p-1 focus:outline-none border pr-10 text-gray-700 sm:text-sm ${classes} ${disabled? 'cursor-not-allowed':''}`}
                                  onChange={(event) => setQuery(event.target.value)}/>
                     <Combo.Options>
                         {filteredOptions.map((option:any, index:number) =>
-                            <Combo.Option key={index} value={option.value} disabled={option.disabled}>
+                            <Combo.Option className={'relative bg-white z-50'} key={index} value={option.value} disabled={option.disabled}>
                                 {option.label}
                             </Combo.Option>
                         )}

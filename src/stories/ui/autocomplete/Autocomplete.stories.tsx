@@ -10,8 +10,11 @@ export default {
         label: {
             description: 'Label do campo'
         },
+        name: {
+            description: 'Nome do campo'
+        },
         disabled: {
-            description: 'Informa campo desabilitado',
+            description: 'Informa se o campo foi desabilitado',
             defaultValue: false,
             options: [true, false],
             table: {
@@ -21,44 +24,95 @@ export default {
             },
             control: {type: 'radio'}
         },
-        options:{
-            description:'Array de opcoes do autocomplete, no par label:value'
+        options: {
+            description: 'Array de opcoes do autocomplete, no par label:value'
         },
-        getState:{
-            description:'Funcao para capturar o valor setado no autocomplete'
+        getValue: {
+            description: 'Funcao para capturar o valor setado no autocomplete'
         },
-        rules: {
-            description: 'Array de funcoes de validacao do campo',
-            defaultValue: []
+        selectedValue: {
+            description: 'parametro para indicar o valor default do autocomplete'
         },
-        hasError: {
+        required: {
+            description: 'Boolean para indicar quando o campo é um recurso  obrigatório do formulário',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        isSubmiting: {
+            description: 'Boolean para indicar quando o campo e o formulario foram submetidos, para validar e' +
+                ' recuperar seu valor',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        getError: {
             description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
         },
     },
     parameters: {
         layout: 'centered',
         label: {
-            description: 'Label do campo',
+            description: 'Label do campo'
         },
         name: {
             description: 'Nome do campo'
         },
         disabled: {
-            description: 'Informa campo desabilitado'
-        },
-        rules: {
-            description: 'Array de funcoes de validacao do campo'
-        },
-        hasError: {
-            description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
-        },
-        getState:{
-            description:'Funcao para capturar o valor setado no autocomplete'
-        },
-        docs: {
-            description: {
-                component: 'Componente autocomplete de formularios',
+            description: 'Informa se o campo foi desabilitado',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
             },
+            control: {type: 'radio'}
+        },
+        options: {
+            description: 'Array de opcoes do autocomplete, no par label:value'
+        },
+        getValue: {
+            description: 'Funcao para capturar o valor setado no autocomplete'
+        },
+        selectedValue: {
+            description: 'parametro para indicar o valor default do autocomplete'
+        },
+        required: {
+            description: 'Boolean para indicar quando o campo é um recurso  obrigatório do formulário',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        isSubmiting: {
+            description: 'Boolean para indicar quando o campo e o formulario foram submetidos, para validar e' +
+                ' recuperar seu valor',
+            defaultValue: false,
+            options: [true, false],
+            table: {
+                type: [
+                    true, false
+                ]
+            },
+            control: {type: 'radio'}
+        },
+        getError: {
+            description: 'Funcao para indicar se o campo tem erro de validacao ou nao'
         },
     },
 } as ComponentMeta<typeof Autocomplete>;
@@ -77,16 +131,11 @@ export const WithDefaultValue = Template.bind({});
 
 WithDefaultValue.args = {options: people, selectedValue: 'Benedict Kessler'}
 
-export const WithError = Template.bind({});
-
-WithError.args = {
-    id: 'teste',
-    name: 'Teste',
-    type: 'text',
-    rules: [(value: any) => !!value || 'Campo obrigatorio'],
-    options: people
-}
 
 export const Disabled = Template.bind({});
 
-Disabled.args = {id: 'teste', name: 'Teste', disabled: true, options: people}
+Disabled.args = {name: 'Teste', disabled: true, options: people}
+
+export const WithError = Template.bind({});
+
+WithError.args = {name: 'Teste', options: people, required: true, isSubmiting: true}

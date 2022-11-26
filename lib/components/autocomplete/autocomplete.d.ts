@@ -1,12 +1,14 @@
 /// <reference types="react" />
 export declare type AutocompleteType = {
     label?: string;
+    name: string;
     selectedValue?: string;
     options: AutocompleteOptionType[];
     disabled?: boolean;
-    getState?: (param: string | number | undefined) => void;
-    rules?: ((params: string | null | undefined) => (boolean | string))[];
-    hasError?: (params: boolean) => void;
+    required?: boolean;
+    isSubmiting?: boolean;
+    getValue?: (value: object) => void;
+    getError?: (value: object) => void;
 };
 export declare type AutocompleteOptionType = {
     label: string;
