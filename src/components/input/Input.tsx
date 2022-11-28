@@ -23,7 +23,6 @@ const Input = (props: InputType) => {
 
     useEffect(() => {
         if (isSubmiting) {
-            console.log(`insubmit`, isSubmiting)
             const validation = rules.map(rule => rule(internValue))
             const validated = validation.filter(item => typeof item == "boolean")
 
