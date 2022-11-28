@@ -25,14 +25,18 @@ describe("Sidebar", () => {
     expect(countClicked).toEqual(2);
   });
 
-  it("should call changed on click option", () => {
+  it("should call changed on click suboption", () => {
     const { getAllByTestId } = render(
       <Sidebar variant="klub" options={mockSidebar} />
     );
     let countCalled = 0;
     const itemOptions = getAllByTestId("option-menu");
+    const itemSubmenus = getAllByTestId("anchor-submenu");
     for (const itemOption of itemOptions) {
       fireEvent.click(itemOption);
+      for (const itemSubmenu of itemSubmenus) {
+        fireEvent.click(itemSubmenu);
+      }
       fireEvent.click(itemOption);
       countCalled++;
     }
