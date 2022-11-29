@@ -1,6 +1,6 @@
 {
   "name": "@blickdev/ds",
-  "version": "0.1.7",
+  "version": "0.1.14",
   "private": false,
   "dependencies": {
     "@headlessui/react": "^1.7.4",
@@ -8,7 +8,6 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
-    "css-mediaquery": "^0.1.2",
     "lodash.defaultsdeep": "^4.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -69,6 +68,11 @@
     ]
   },
   "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.2.2",
+    "typescript": "^4.8.4",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-decorators": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
@@ -94,7 +98,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/css-mediaquery": "^0.1.1",
     "@types/jest": "^29.2.2",
     "@types/lodash.defaultsdeep": "^4.6.7",
     "@types/mocha": "^10.0.0",
