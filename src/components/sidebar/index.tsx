@@ -156,13 +156,9 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                       >
                                         <div className="flex gap-0.5">
                                           <a
+                                            data-testid="anchor-submenu"
                                             href={itemSubmenus.path}
                                             target="blank"
-                                            onClick={() =>
-                                              setOpenOptionsWhenMenuClosed(
-                                                false
-                                              )
-                                            }
                                           >
                                             {itemSubmenus.icon}
                                             <span className="text-sm">
@@ -217,11 +213,9 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                     >
                                       <div className="flex gap-0.5">
                                         <a
+                                          data-testid="anchor-submenu"
                                           href={itemSubmenus.path}
                                           target="blank"
-                                          onClick={() =>
-                                            setExpandOptions(false)
-                                          }
                                         >
                                           {itemSubmenus.icon}
                                           <span className="text-sm">
@@ -355,6 +349,7 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                       {/* closed menu */}
                                       <div className="flex gap-0.5">
                                         <a
+                                          data-testid="anchor-submenu"
                                           href={itemSubmenus.path}
                                           target="blank"
                                           onClick={() =>
@@ -418,9 +413,9 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                                       }
                                     >
                                       <a
+                                        data-testid="anchor-submenu"
                                         href={itemSubmenus.path}
                                         target="blank"
-                                        onClick={() => setExpandOptions(false)}
                                       >
                                         {itemSubmenus.icon}
                                         <span className="text-sm m-2">
