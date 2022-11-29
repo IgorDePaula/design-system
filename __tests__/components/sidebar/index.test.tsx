@@ -1,4 +1,5 @@
 import React from "react";
+import "intersection-observer";
 import { fireEvent, render } from "@testing-library/react";
 import Sidebar from "../../../src/components/sidebar";
 import { mockSidebar } from "../../../src/components/sidebar/mock";
@@ -32,6 +33,7 @@ describe("Sidebar", () => {
     let countCalled = 0;
     const itemOptions = getAllByTestId("option-menu");
     const itemSubmenus = getAllByTestId("anchor-submenu");
+
     for (const itemOption of itemOptions) {
       fireEvent.click(itemOption);
       for (const itemSubmenu of itemSubmenus) {
@@ -43,15 +45,15 @@ describe("Sidebar", () => {
     expect(countCalled).toEqual(itemOptions.length);
   });
 
-  // it("should call the mobile menu click function", () => {
-  //   const { getByTestId } = render(
-  //     <Sidebar variant="connexio" options={mockSidebar} />
-  //   );
-  //   const onOpenMobileMenu = getByTestId("open-mobile-menu");
-  //   let countClicked = 0;
-  //   fireEvent.click(onOpenMobileMenu);
-  //   countClicked++;
+  it("should call the mobile menu click function", () => {
+    const { getByTestId } = render(
+      <Sidebar variant="connexio" options={mockSidebar} />
+    );
+    const onOpenMobileMenu = getByTestId("open-mobile-menu");
+    let countClicked = 0;
+    fireEvent.click(onOpenMobileMenu);
+    countClicked++;
 
-  //   expect(countClicked).toEqual(2);
-  // });
+    expect(countClicked).toEqual(1);
+  });
 });
