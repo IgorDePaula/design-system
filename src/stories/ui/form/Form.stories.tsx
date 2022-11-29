@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default {
     title: 'UI/Form',
@@ -13,7 +12,7 @@ export default {
                 }
             },
             control: {type: 'radio'}
-        }
+        },
     },
     parameters: {
         layout: 'centered',
