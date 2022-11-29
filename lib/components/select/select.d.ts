@@ -9,6 +9,7 @@ export declare type SelectType = {
     isSubmiting?: boolean;
     getValue?: (value: object) => void;
     getError?: (value: object) => void;
+    variant?: "connexio" | "klub";
 };
 export declare type SelectOptionType = {
     label: string;

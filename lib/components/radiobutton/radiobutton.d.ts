@@ -2,10 +2,11 @@
 export declare type RadioButtonType = {
     name: string;
     disabled?: boolean;
+    variant?: "connexio" | "klub";
     label?: string;
     checked?: string | number;
     options: RadioButtonOptionType[];
-    position?: 'vertical' | 'horizontal';
+    position?: "vertical" | "horizontal";
     required?: boolean;
     isSubmiting?: boolean;
     getValue?: (value: object) => void;
@@ -19,6 +20,7 @@ export declare type RadioButtonOptionType = {
 declare const RadioButton: (props: RadioButtonType) => JSX.Element;
 export declare type OptionsProps = {
     options: RadioButtonOptionType[];
+    variant?: "connexio" | "klub";
     label?: string;
     name: string;
     required?: boolean;

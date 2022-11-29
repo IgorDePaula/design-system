@@ -2,6 +2,7 @@ import React from "react";
 export declare type SwitcherType = {
     label?: string;
     name: string;
+    variant?: "connexio" | "klub";
     state?: boolean;
     required?: boolean;
     isSubmiting?: boolean;
