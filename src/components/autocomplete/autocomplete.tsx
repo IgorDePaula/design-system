@@ -32,7 +32,7 @@ const Autocomplete = (props: AutocompleteType) => {
         query === ''
             ? options
             : options.filter((option: AutocompleteOptionType) => {
-                return option.value.includes(query.toLowerCase())
+                return option.value.toLowerCase().includes(query.toLowerCase())
             })
 
     useEffect(() => {
