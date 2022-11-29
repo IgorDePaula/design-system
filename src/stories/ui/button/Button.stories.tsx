@@ -7,6 +7,11 @@ export default {
     title: 'UI/Button',
     component: Button,
     argTypes: {
+        variant: {
+            defaultValue: "klub",
+            options: ["klub", "connexio"],
+            control: { type: "radio" },
+          },
         icon: {
             description: 'Ícone do botão',
             type: 'string',
@@ -36,7 +41,11 @@ export default {
     },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => 
+<div className='w-32  m-auto'>
+<Button className="" {...args} />
+
+</div>
 
 export const Default = Template.bind({});
 export const WithIconComponent = Template.bind({});

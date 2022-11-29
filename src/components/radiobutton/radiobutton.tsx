@@ -153,7 +153,7 @@ const Horizontal = ({
                         active
                           ? "border-connexio-primary ring-2 ring-connexio-primary bg-connexio-primary text-white"
                           : "",
-                        `relative flex ${disabledClass} rounded-lg border bg-connexio-primary text-white p-4 shadow-sm focus:outline-none`
+                        `relative flex ${disabledClass} rounded-lg border bg-connexio-primary-light text-white p-4 shadow-sm focus:outline-none`
                       )
                   : ({ checked, active }) =>
                       classNames(
@@ -163,7 +163,7 @@ const Horizontal = ({
                         active
                           ? "border-klub-hover ring-2 ring-klub-hover bg-klub-hover text-white"
                           : "",
-                        `relative flex ${disabledClass} rounded-lg border bg-klub-hover text-white p-4 shadow-sm focus:outline-none`
+                        `relative flex ${disabledClass} rounded-lg border bg-klub-primary text-white p-4 shadow-sm focus:outline-none`
                       )
               }
             >
@@ -275,9 +275,9 @@ const Vertical = ({
                         ? "border-transparent bg-connexio-primary"
                         : "border-gray-200 bg-connexio-primary-light text-white",
                       active
-                        ? "border-connexio-primary ring-2 ring-connexio-primary bg-connexio-primary text-white"
+                        ? "border-connexio-primary ring-2 ring-connexio-primary bg-connexio-primary-light text-white"
                         : "",
-                      `relative flex ${disabledClass} rounded-lg border bg-connexio-primary text-white p-4 shadow-sm focus:outline-none`
+                      `relative flex ${disabledClass} rounded-lg border bg-connexio-primary-light text-white p-4 shadow-sm focus:outline-none`
                     )
                 : ({ checked, active }) =>
                     classNames(
@@ -287,7 +287,7 @@ const Vertical = ({
                       active
                         ? "border-klub-hover ring-2 ring-klub-hover bg-klub-hover text-white"
                         : "",
-                      `relative flex ${disabledClass} rounded-lg border bg-klub-hover text-white p-4 shadow-sm focus:outline-none`
+                      `relative flex ${disabledClass} rounded-lg border bg-klub-primary text-white p-4 shadow-sm focus:outline-none`
                     )
             }
           >
