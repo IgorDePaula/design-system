@@ -6,7 +6,7 @@ export default {
   title: "Components/UserMenu",
   component: UserMenu,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   argTypes: {
     variant: {
@@ -18,8 +18,6 @@ export default {
 } as ComponentMeta<typeof UserMenu>;
 
 const Template: ComponentStory<typeof UserMenu> = (args) => (
-    <nav className="navbar navbar-expand-lg py-2 flex items-center justify-center">
-    <UserMenu{...args}/>
-    </nav>
+  <UserMenu {...args} />
 );
 export const Default = Template.bind({});

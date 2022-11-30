@@ -32,7 +32,7 @@ const Button: React.FunctionComponent<ButtonType> = (props: ButtonType) => {
       type="submit"
       className={`group relative flex w-full justify-center rounded-md border border-transparent ${
         isLoading ? "cursor-not-allowed" : ""
-      } ${variantBackground} py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700  ${variantFocus}  focus:ring-2  `}
+      } ${variantBackground} py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700  focus:${variantFocus} focus:ring-2  `}
     >
       {icon && !isLoading && (
         <span className="absolute inset-y-0 left-0 flex items-center pl-3">

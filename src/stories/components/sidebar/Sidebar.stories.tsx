@@ -1,8 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Sidebar from "@components/sidebar";
-import { mockSidebar } from "@components/sidebar/mock";
-import { ProSidebarProvider } from "react-pro-sidebar";
+import { mockSidebar } from "@mocks/sidebar";
 
 export default {
   title: "Components/Sidebar",
@@ -24,8 +23,6 @@ export default {
 } as ComponentMeta<typeof Sidebar>;
 
 const Template: ComponentStory<typeof Sidebar> = (args) => (
-  <ProSidebarProvider>
-    <Sidebar {...args} />
-  </ProSidebarProvider>
+  <Sidebar {...args} />
 );
 export const Default = Template.bind({});

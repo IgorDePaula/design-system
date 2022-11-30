@@ -2,7 +2,7 @@ import React from "react";
 import "intersection-observer";
 import { fireEvent, render } from "@testing-library/react";
 import Sidebar from "../../../src/components/sidebar";
-import { mockSidebar } from "../../../src/components/sidebar/mock";
+import { mockSidebar } from "../../../src/mocks/sidebar";
 
 describe("Sidebar", () => {
   it("renders sidebar", () => {
