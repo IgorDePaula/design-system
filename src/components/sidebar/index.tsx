@@ -3,9 +3,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { BiMenu } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
+import MenuOptions from "./menuoptions";
 import { BsArrowDownShort } from "react-icons/bs";
 
-type OptionsProps = {
+export type OptionsProps = {
   id: number;
   label?: string;
   name?: string;
@@ -96,142 +97,18 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
                       />
                     </button>
                   </div>
-                  <nav
-                    aria-label="Sidebar"
-                    className={
-                      variant === "klub"
-                        ? "flex flex-col items-start space-y-3 w-full mx-auto mt-5 "
-                        : "flex flex-col items-start space-y-3 w-full mx-auto mt-5 "
-                    }
-                  >
-                    {options?.map((item) => (
-                      <div
-                        data-testid="item-option"
-                        onClick={handleOpenOption(item)}
-                        className={
-                          variant === "connexio"
-                            ? "flex items-center p-4 w-full text-white cursor-pointer "
-                            : "flex items-center p-4 w-full text-white cursor-pointer "
-                        }
-                      >
-                        <div className="flex">
-                          {item.icon}
-                          <div className="flex-col">
-                            <div className="flex-col">
-                              <div className="flex">
-                                <span className={"flex  bold ml-4 text-xl"}>
-                                  {item.label}
-                                </span>
-                                <BsArrowDownShort
-                                  fontSize={20}
-                                  className={
-                                    expandOptions && selectedItem === item.id
-                                      ? "mt-1 rotate-0 ease-in-out duration-200"
-                                      : "mt-1 -rotate-90 ease-in-out duration-200"
-                                  }
-                                />
-                              </div>
-                              <div
-                                className={
-                                  openOptionsWhenMenuClosed &&
-                                  openMenu === false &&
-                                  selectedItem === item.id
-                                    ? "flex flex-col"
-                                    : "hidden"
-                                }
-                              >
-                                {item.subMenus?.length &&
-                                  item.subMenus?.map(
-                                    (
-                                      itemSubmenus: OptionsProps,
-                                      indexMenuitem: number
-                                    ) => (
-                                      <div
-                                        key={`menuitem-sidebar-${indexMenuitem}`}
-                                        className={
-                                          variant === "connexio"
-                                            ? " ml-2 self-start w-full rounded-lg   p-4 cursor-pointer"
-                                            : "ml-2 self-start w-full rounded-lg  p-4   cursor-pointer"
-                                        }
-                                      >
-                                        <div className="flex gap-0.5">
-                                          <a
-                                            data-testid="anchor-submenu"
-                                            href={itemSubmenus.path}
-                                            target="blank"
-                                          >
-                                            {itemSubmenus.icon}
-                                            <span className="text-sm">
-                                              {itemSubmenus.name}
-                                            </span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                    )
-                                  )}
-                              </div>
-
-                              <div
-                                className={
-                                  openMenu && isMobile === false
-                                    ? "flex self-center"
-                                    : "hidden"
-                                }
-                              >
-                                <BsArrowDownShort
-                                  fontSize={15}
-                                  className={
-                                    expandOptions && selectedItem === item.id
-                                      ? "rotate-0 ease-in-out duration-200"
-                                      : "-rotate-90 ease-in-out duration-200"
-                                  }
-                                />
-                              </div>
-                            </div>
-                            <div
-                              className={
-                                openMenu &&
-                                expandOptions &&
-                                selectedItem === item.id
-                                  ? "flex flex-col"
-                                  : "hidden"
-                              }
-                            >
-                              {item.subMenus?.length &&
-                                item.subMenus?.map(
-                                  (
-                                    itemSubmenus: OptionsProps,
-                                    indexMenuitem: number
-                                  ) => (
-                                    <div
-                                      key={`menuitem-sidebar-${indexMenuitem}`}
-                                      className={
-                                        variant === "connexio"
-                                          ? "  hover:rounded p-2 cursor-pointer duration-700"
-                                          : " hover:rounded p-2 cursor-pointer duration-700"
-                                      }
-                                    >
-                                      <div className="flex gap-0.5">
-                                        <a
-                                          data-testid="anchor-submenu"
-                                          href={itemSubmenus.path}
-                                          target="blank"
-                                        >
-                                          {itemSubmenus.icon}
-                                          <span className="text-sm">
-                                            {itemSubmenus.name}
-                                          </span>
-                                        </a>
-                                      </div>
-                                    </div>
-                                  )
-                                )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </nav>
+                  <MenuOptions
+                    variant={variant}
+                    setExpandOptions={setExpandOptions}
+                    expandOptions={expandOptions}
+                    options={options}
+                    openOptionsWhenMenuClosed={openOptionsWhenMenuClosed}
+                    setOpenOptionsWhenMenuClosed={setOpenOptionsWhenMenuClosed}
+                    selectedItem={selectedItem}
+                    setSelectedItem={setSelectedItem}
+                    openMenu={openMenu}
+                    isMobile={isMobile}
+                  />
                 </Dialog.Panel>
               </Transition.Child>
               <div className="w-14 flex-shrink-0" aria-hidden="true" />
