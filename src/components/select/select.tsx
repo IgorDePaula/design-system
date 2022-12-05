@@ -94,8 +94,8 @@ const Select = (props: SelectType) => {
           <Listbox.Options
             className={
               variant === "connexio"
-                ? "absolute mt-1 w-fit z-50  overflow-auto ring-1 ring-connexio-primary-light rounded-md bg-white outline-none border-none py-1 text-base shadow-lg  focus:outline-none sm:text-sm"
-                : "absolute mt-1 w-fit z-50  overflow-auto ring-1 ring-klub-primary rounded-md bg-white outline-none border-none py-1 text-base shadow-lg  focus:outline-none sm:text-sm"
+                ? `absolute mt-1 w-fit z-50 overflow-auto ring-1 ring-connexio-primary-light rounded-md bg-white outline-none border-none py-1 text-base shadow-lg  focus:outline-none sm:text-sm`
+                : `absolute mt-1 w-fit z-50  overflow-auto ring-1 ring-klub-primary rounded-md bg-white outline-none border-none py-1 text-base shadow-lg  focus:outline-none sm:text-sm`
             }
           >
             {options.map((option: SelectOptionType, index: number) => (

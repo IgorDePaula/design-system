@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { AvatarIcon } from "../icons/avatar";
 import { HeaderProps } from "../header";
 
-const UserMenu = ({ variant }: HeaderProps) => {
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
-
+const UserMenu = ({ variant, showDropdown, setShowDropdown }: HeaderProps) => {
   const handleOpenDropdown = () => setShowDropdown((prevState) => !prevState);
 
   return (
     <div className="contents">
       <div
-        data-testid="user-menu-wrapper-icon"
         className="flex items-center place-content-center mr-4 w-10 h-10 rounded-full cursor-pointer"
         onClick={handleOpenDropdown}
       >

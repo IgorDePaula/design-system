@@ -65,15 +65,15 @@ const Switcher: React.FunctionComponent<SwitcherType> = (
               onChange={setEnabled}
               className={
                 variant === 'connexio' ?`${
-                enabled ? "bg-connexio-primary-light" : "bg-gray-200"
+                enabled ? `bg-connexio-primary-light` : `bg-gray-200`
               } relative inline-flex h-5 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-connexio-primary-light focus:ring-offset-2`
               :`${
-                enabled ? "bg-klub-primary" : "bg-gray-200"
+                enabled ? `bg-klub-primary` : `bg-gray-200`
               } relative inline-flex h-5 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-klub-primary focus:ring-offset-2`}
             >
               <span
                 className={`${
-                  enabled ? "translate-x-6" : "translate-x-1"
+                  enabled ? `translate-x-6` : `translate-x-1`
                 } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
               />
             </Switch>
