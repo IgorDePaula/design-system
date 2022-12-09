@@ -3,7 +3,11 @@ import MobileSidebar from "./mobileSidebar";
 import DesktopSidebar from "./desktopSidebar";
 import MobileNavigation from "./mobileNavigation";
 import { OptionsProps } from "./types/optionsProps";
-import { SidebarProps } from "./types/sidebarProps";
+
+type SidebarProps = {
+  variant?: "klub" | "connexio";
+  options?: OptionsProps[];
+};
 
 const Sidebar = ({ variant, options }: SidebarProps) => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
@@ -32,7 +36,6 @@ const Sidebar = ({ variant, options }: SidebarProps) => {
   return (
     <>
       <div className="flex h-screen overflow-y-auto">
-
         {/* Mobile Sidebar */}
         <MobileSidebar
           variant={variant}

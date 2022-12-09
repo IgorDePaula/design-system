@@ -2,8 +2,20 @@ import React from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsArrowDownShort } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
-import { OptionsProps } from "./types/optionsProps";
-import { DesktopProps } from "./types/desktopProps";
+import { OptionsProps } from "../types/optionsProps";
+
+type DesktopProps = {
+  variant: string | undefined;
+  options: OptionsProps[] | undefined;
+  expandOptions: boolean;
+  setExpandOptions: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedItem: number | undefined;
+  openOptionsWhenMenuClosed: boolean;
+  setOpenOptionsWhenMenuClosed: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  openMenu: boolean;
+  handleOpenOption: (item: OptionsProps) => () => void;
+};
 
 const DesktopSidebar = (props: DesktopProps) => {
   const alignIcons = props.openMenu ? "justify-start" : "justify-center";

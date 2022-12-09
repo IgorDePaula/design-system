@@ -11,11 +11,10 @@ export type ButtonType = {
 };
 
 const Button: React.FunctionComponent<ButtonType> = (props: ButtonType) => {
+  const { icon, text, onclick, href, variant = "connexio", isLoading = false } = props;
+
   const variantBackground =
-    props.variant === "connexio"
-      ? "connexio-primary-light"
-      : "klub-primary";
-  const { icon, text, onclick, href, isLoading = false } = props;
+    variant === "connexio" ? "connexio-primary-light" : "klub-primary";
 
   const handleClick = () => {
     !isLoading && onclick();

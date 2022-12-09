@@ -1,8 +1,8 @@
 import React from "react";
-import { AvatarIcon } from "../icons/avatar";
-import { HeaderProps } from "../header";
+import { AvatarIcon } from "../icons/avatar/avatarIcon";
+import { UserMenuProps } from "../header";
 
-const UserMenu = ({ variant, showDropdown, setShowDropdown }: HeaderProps) => {
+const UserMenu = ({ variant, showDropdown, setShowDropdown }: UserMenuProps) => {
   const handleOpenDropdown = () => setShowDropdown((prevState) => !prevState);
 
   return (

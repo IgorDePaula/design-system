@@ -1,9 +1,26 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { OptionsProps } from "./types/optionsProps";
+import { OptionsProps } from "../types/optionsProps";
 import { BsArrowDownShort } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
-import { MobileProps } from "./types/mobileProps";
+
+type MobileProps = {
+  variant: string | undefined;
+  options: OptionsProps[] | undefined;
+  expandOptions: boolean;
+  setExpandOptions: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedItem: number | undefined;
+  setSelectedItem: React.Dispatch<React.SetStateAction<number | undefined>>;
+  openOptionsWhenMenuClosed: boolean;
+  setOpenOptionsWhenMenuClosed: React.Dispatch<React.SetStateAction<boolean>>;
+  openMenu: boolean;
+  isMobile: boolean;
+  handleOpenOption: (item: OptionsProps) => () => void;
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleChangeMobileMenu: () => void;
+};
+
 
 const MobileSidebar = (props: MobileProps) => {
   return (

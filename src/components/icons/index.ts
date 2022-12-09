@@ -1,4 +1,4 @@
-export { AvatarIcon } from "./avatar";
+export { AvatarIcon } from "./avatar/avatarIcon";
 
 export type IconProps = {
   variant?: "connexio" | "klub"

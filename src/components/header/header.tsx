@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import UserMenu from "../user-menu";
 
-export type HeaderProps = {
+export type UserMenuProps = {
   variant: "klub" | "connexio";
   showDropdown: boolean;
   setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
 };
-const Header = ({ variant }: HeaderProps) => {
+const Header = ({ variant }: UserMenuProps) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   return (
     <nav className="navbar navbar-expand-lg py-2 flex items-center justify-end">
