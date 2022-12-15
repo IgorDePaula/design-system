@@ -1,7 +1,7 @@
 import React from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
-type MobileNavigationProps = {
+export type MobileNavigationProps = {
   variant: string | undefined;
   handleChangeMobileMenu: () => void;
 };

@@ -4,7 +4,7 @@ import DesktopSidebar from "./desktopSidebar";
 import MobileNavigation from "./mobileNavigation";
 import { OptionsProps } from "./types/optionsProps";
 
-type SidebarProps = {
+export type SidebarProps = {
   variant?: "klub" | "connexio";
   options?: OptionsProps[];
 };

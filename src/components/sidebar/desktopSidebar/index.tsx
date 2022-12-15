@@ -4,7 +4,7 @@ import { BsArrowDownShort } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 import { OptionsProps } from "../types/optionsProps";
 
-type DesktopProps = {
+export type DesktopProps = {
   variant: string | undefined;
   options: OptionsProps[] | undefined;
   expandOptions: boolean;

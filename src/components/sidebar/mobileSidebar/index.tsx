@@ -4,7 +4,7 @@ import { OptionsProps } from "../types/optionsProps";
 import { BsArrowDownShort } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 
-type MobileProps = {
+export type MobileProps = {
   variant: string | undefined;
   options: OptionsProps[] | undefined;
   expandOptions: boolean;
