@@ -1,4 +1,4 @@
-Blick Dev Design System
+Design System
 =======================
 
 ## WIP

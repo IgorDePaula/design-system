@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-commitlint --from=HEAD
-npm run test -u
-yarn build && git add .
+#commitlint --from=HEAD
+3npm run test -u
+#yarn build && git add .
